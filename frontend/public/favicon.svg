@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <rect width="100" height="100" rx="20" fill="#090d16"/>
+  <rect x="5" y="5" width="90" height="90" rx="16" fill="none" stroke="#00f2fe" stroke-width="2" stroke-opacity="0.3"/>
+  <text x="50" y="64" font-size="44" font-family="system-ui, -apple-system, sans-serif" font-weight="900" fill="#00f2fe" text-anchor="middle">BQ</text>
+</svg>
