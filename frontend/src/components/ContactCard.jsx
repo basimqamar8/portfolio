@@ -3,7 +3,7 @@ import { ExternalLink, ArrowUpRight, Copy, Check } from 'lucide-react';
 
 /**
  * ContactCard Component
- * Interactive cards for direct contact channels (Phone, Email, LinkedIn, GitHub).
+ * Minimalist dark cards for direct contact channels (Phone, Email, LinkedIn, GitHub).
  * Supports direct web compose (e.g. Gmail), telephone links, and one-click clipboard copying.
  */
 export default function ContactCard({
@@ -13,7 +13,6 @@ export default function ContactCard({
   href,
   external = false,
   description,
-  accentColor = "var(--accent-cyan)",
   copyable = false,
   copyText = "",
 }) {
@@ -35,9 +34,9 @@ export default function ContactCard({
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'space-between',
-        backgroundColor: 'var(--bg-card)',
-        border: '1px solid var(--border-card)',
-        borderRadius: 'var(--radius-lg)',
+        backgroundColor: '#0c0c0c',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+        borderRadius: '14px',
         padding: '1.75rem',
         transition: 'all var(--transition-normal)',
       }}
@@ -46,20 +45,20 @@ export default function ContactCard({
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '1.25rem' }}>
         <div
           style={{
-            width: '44px',
-            height: '44px',
-            borderRadius: '12px',
-            backgroundColor: 'rgba(255, 255, 255, 0.03)',
-            border: '1px solid var(--border-subtle)',
+            width: '42px',
+            height: '42px',
+            borderRadius: '10px',
+            backgroundColor: '#141414',
+            border: '1px solid rgba(255, 255, 255, 0.1)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            color: accentColor,
+            color: '#ffffff',
             transition: 'all var(--transition-normal)',
           }}
           className="contact-card-icon"
         >
-          {Icon && <Icon size={22} />}
+          {Icon && <Icon size={20} />}
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -72,19 +71,19 @@ export default function ContactCard({
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.35rem',
-                padding: '0.3rem 0.65rem',
+                padding: '0.25rem 0.6rem',
                 borderRadius: '6px',
-                backgroundColor: copied ? 'rgba(16, 185, 129, 0.15)' : 'rgba(255, 255, 255, 0.04)',
-                border: `1px solid ${copied ? 'rgba(16, 185, 129, 0.4)' : 'var(--border-subtle)'}`,
-                color: copied ? 'var(--success)' : 'var(--text-muted)',
+                backgroundColor: copied ? 'rgba(34, 197, 94, 0.12)' : '#141414',
+                border: `1px solid ${copied ? 'rgba(34, 197, 94, 0.3)' : 'rgba(255, 255, 255, 0.1)'}`,
+                color: copied ? 'var(--status-active)' : 'var(--text-muted)',
                 fontSize: '0.74rem',
                 fontFamily: 'var(--font-mono)',
                 cursor: 'pointer',
                 transition: 'all var(--transition-fast)',
               }}
             >
-              {copied ? <Check size={13} color="var(--success)" /> : <Copy size={13} />}
-              <span>{copied ? 'Copied!' : 'Copy'}</span>
+              {copied ? <Check size={12} color="var(--status-active)" /> : <Copy size={12} />}
+              <span>{copied ? 'Copied' : 'Copy'}</span>
             </button>
           )}
 
@@ -99,14 +98,14 @@ export default function ContactCard({
               width: '32px',
               height: '32px',
               borderRadius: '6px',
-              backgroundColor: 'rgba(255, 255, 255, 0.03)',
+              backgroundColor: '#141414',
               color: 'var(--text-muted)',
-              border: '1px solid var(--border-subtle)',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
               transition: 'all var(--transition-fast)',
             }}
             title="Open link"
           >
-            {external ? <ExternalLink size={15} /> : <ArrowUpRight size={15} />}
+            {external ? <ExternalLink size={14} /> : <ArrowUpRight size={14} />}
           </a>
         </div>
       </div>
@@ -120,7 +119,7 @@ export default function ContactCard({
         <span
           className="font-mono"
           style={{
-            fontSize: '0.78rem',
+            fontSize: '0.74rem',
             color: 'var(--text-muted)',
             textTransform: 'uppercase',
             letterSpacing: '0.06em',
@@ -132,17 +131,18 @@ export default function ContactCard({
         </span>
         <h4
           style={{
-            fontSize: '1.1rem',
+            fontSize: '1.05rem',
             fontWeight: 700,
             color: 'var(--text-primary)',
             wordBreak: 'break-word',
             marginBottom: description ? '0.25rem' : '0',
+            letterSpacing: '-0.01em',
           }}
         >
           {value}
         </h4>
         {description && (
-          <p style={{ fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+          <p style={{ fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
             {description}
           </p>
         )}

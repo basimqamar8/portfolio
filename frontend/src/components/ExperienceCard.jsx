@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { Building2, Calendar, Award, ExternalLink, ShieldCheck, ZoomIn, Sparkles } from 'lucide-react';
+import { Building2, Calendar, Award, ZoomIn } from 'lucide-react';
 import Button from './Button';
 import CertificateModal from './CertificateModal';
 
 /**
  * ExperienceCard Component
  * Displays verified internship details for DevelopersHub Corporation
- * with an interactive preview of the actual Certificate of Achievement.
+ * with an interactive preview of the Certificate of Achievement.
  */
 export default function ExperienceCard() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -14,47 +14,47 @@ export default function ExperienceCard() {
   return (
     <>
       <div
-        className="experience-card hover-glow"
+        className="experience-card"
         style={{
-          backgroundColor: 'var(--bg-card)',
-          border: '1px solid var(--border-card)',
-          borderRadius: 'var(--radius-lg)',
+          backgroundColor: '#0c0c0c',
+          border: '1px solid rgba(255, 255, 255, 0.09)',
+          borderRadius: '16px',
           padding: '2.25rem',
           transition: 'all var(--transition-normal)',
-          boxShadow: 'var(--shadow-md)',
+          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.6)',
         }}
       >
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', alignItems: 'center' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2.25rem', alignItems: 'center' }}>
           
           {/* Left / Info Column */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.5rem', flexWrap: 'wrap' }}>
-              <span className="badge badge-cyan font-mono">Professional Internship</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.65rem', flexWrap: 'wrap' }}>
+              <span className="badge badge-minimal font-mono">Professional Internship</span>
               <span
                 style={{
                   display: 'inline-flex',
                   alignItems: 'center',
                   gap: '0.35rem',
-                  fontSize: '0.78rem',
-                  fontWeight: 700,
-                  color: '#fbbf24',
-                  backgroundColor: 'rgba(251, 191, 36, 0.1)',
-                  padding: '0.25rem 0.65rem',
+                  fontSize: '0.76rem',
+                  fontWeight: 600,
+                  color: '#e5c07b',
+                  backgroundColor: 'rgba(229, 192, 123, 0.08)',
+                  padding: '0.2rem 0.65rem',
                   borderRadius: 'var(--radius-full)',
-                  border: '1px solid rgba(251, 191, 36, 0.25)',
+                  border: '1px solid rgba(229, 192, 123, 0.2)',
                 }}
               >
                 <Award size={13} />
-                Best Award Emblem
+                Best Award Distinction
               </span>
             </div>
 
-            <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
+            <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.35rem', letterSpacing: '-0.02em' }}>
               Data Science &amp; Analytics Intern
             </h3>
             
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'var(--accent-cyan)', fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.85rem' }}>
-              <Building2 size={16} />
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#ffffff', fontSize: '0.95rem', fontWeight: 600, marginBottom: '0.85rem' }}>
+              <Building2 size={15} color="var(--text-muted)" />
               <span>DevelopersHub Corporation</span>
             </div>
 
@@ -64,20 +64,20 @@ export default function ExperienceCard() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.45rem',
-                fontSize: '0.82rem',
+                fontSize: '0.8rem',
                 color: 'var(--text-muted)',
                 backgroundColor: 'rgba(255, 255, 255, 0.03)',
-                padding: '0.35rem 0.75rem',
+                padding: '0.3rem 0.7rem',
                 borderRadius: 'var(--radius-sm)',
                 border: '1px solid var(--border-subtle)',
                 marginBottom: '1.25rem',
               }}
             >
-              <Calendar size={14} color="var(--accent-cyan)" />
+              <Calendar size={13} />
               <span>11 May 2026 – 22 June 2026 (6 Weeks)</span>
             </div>
 
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
               Completed a six-week internship program in Data Science &amp; Analytics at DevelopersHub Corporation.
               The certificate recognizes my completion of the program and highlights my performance during the internship.
             </p>
@@ -100,15 +100,15 @@ export default function ExperienceCard() {
             onClick={() => setIsModalOpen(true)}
             style={{
               position: 'relative',
-              borderRadius: 'var(--radius-md)',
+              borderRadius: '10px',
               overflow: 'hidden',
-              border: '1px solid rgba(0, 242, 254, 0.3)',
-              backgroundColor: '#05070d',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              backgroundColor: '#070707',
               cursor: 'pointer',
-              boxShadow: '0 10px 25px rgba(0, 0, 0, 0.5)',
+              boxShadow: '0 8px 24px rgba(0, 0, 0, 0.6)',
               transition: 'all var(--transition-normal)',
             }}
-            className="certificate-preview-thumb group"
+            className="certificate-preview-thumb hover-lift"
           >
             <div style={{ position: 'relative', width: '100%', height: '220px', overflow: 'hidden' }}>
               <img
@@ -119,23 +119,22 @@ export default function ExperienceCard() {
                   height: '100%',
                   objectFit: 'cover',
                   objectPosition: 'center top',
-                  transition: 'transform 0.5s ease',
+                  transition: 'transform 0.4s ease',
                   display: 'block',
                 }}
               />
               
-              {/* Subtle Overlay with Enlarge Cue */}
+              {/* Subtle Minimal Overlay with Enlarge Cue */}
               <div
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'linear-gradient(180deg, rgba(7, 9, 14, 0.2) 0%, rgba(7, 9, 14, 0.85) 100%)',
+                  background: 'linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.8) 100%)',
                   display: 'flex',
-                  flexDirection: 'column',
                   alignItems: 'center',
                   justifyContent: 'flex-end',
+                  flexDirection: 'column',
                   padding: '1rem',
-                  gap: '0.4rem',
                 }}
               >
                 <div
@@ -143,18 +142,17 @@ export default function ExperienceCard() {
                     display: 'inline-flex',
                     alignItems: 'center',
                     gap: '0.4rem',
-                    padding: '0.35rem 0.85rem',
+                    padding: '0.35rem 0.8rem',
                     borderRadius: 'var(--radius-full)',
-                    backgroundColor: 'rgba(0, 242, 254, 0.15)',
-                    border: '1px solid var(--accent-cyan)',
+                    backgroundColor: '#161616',
+                    border: '1px solid rgba(255, 255, 255, 0.16)',
                     color: '#ffffff',
-                    fontSize: '0.8rem',
-                    fontWeight: 600,
-                    backdropFilter: 'blur(6px)',
+                    fontSize: '0.76rem',
+                    fontWeight: 500,
                   }}
                 >
-                  <ZoomIn size={14} color="var(--accent-cyan)" />
-                  <span>Click to Enlarge Certificate</span>
+                  <ZoomIn size={13} />
+                  <span>Click to Enlarge</span>
                 </div>
               </div>
             </div>
@@ -162,17 +160,17 @@ export default function ExperienceCard() {
             <div
               style={{
                 padding: '0.65rem 1rem',
-                backgroundColor: 'rgba(7, 9, 14, 0.95)',
-                borderTop: '1px solid var(--border-subtle)',
+                backgroundColor: '#0a0a0a',
+                borderTop: '1px solid rgba(255, 255, 255, 0.06)',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'space-between',
-                fontSize: '0.75rem',
+                fontSize: '0.74rem',
               }}
               className="font-mono"
             >
               <span style={{ color: 'var(--text-muted)' }}>ID: DHC-2362</span>
-              <span style={{ color: '#fbbf24', fontWeight: 600 }}>Best Award Distinction</span>
+              <span style={{ color: '#e5c07b', fontWeight: 600 }}>Best Award Emblem</span>
             </div>
           </div>
 

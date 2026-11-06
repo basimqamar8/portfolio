@@ -57,14 +57,14 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   title="Compose email to Basim Qamar in Gmail"
                 >
-                  <Mail size={16} color="var(--accent-cyan)" />
+                  <Mail size={16} color="currentColor" />
                   <span>basimqamar8@gmail.com</span>
                   <ExternalLink size={12} color="var(--text-muted)" />
                 </a>
               </li>
               <li className="footer-contact-item">
                 <a href="tel:+923003162564" title="Call Basim Qamar">
-                  <Phone size={16} color="var(--accent-cyan)" />
+                  <Phone size={16} color="currentColor" />
                   <span>+92 3003162564</span>
                 </a>
               </li>
@@ -75,7 +75,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   title="Basim Qamar on LinkedIn"
                 >
-                  <Linkedin size={16} color="var(--accent-cyan)" />
+                  <Linkedin size={16} color="currentColor" />
                   <span>LinkedIn Profile</span>
                   <ExternalLink size={12} color="var(--text-muted)" />
                 </a>
@@ -87,7 +87,7 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   title="AgroVision Live Web Platform"
                 >
-                  <Globe size={16} color="var(--accent-cyan)" />
+                  <Globe size={16} color="currentColor" />
                   <span>AgroVision Live Platform</span>
                   <ExternalLink size={12} color="var(--text-muted)" />
                 </a>
@@ -99,8 +99,20 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   title="AgroVision Repository on GitHub"
                 >
-                  <Github size={16} color="var(--accent-cyan)" />
+                  <Github size={16} color="currentColor" />
                   <span>AgroVision Repository</span>
+                  <ExternalLink size={12} color="var(--text-muted)" />
+                </a>
+              </li>
+              <li className="footer-contact-item">
+                <a
+                  href="https://github.com/basimqamar8/portfolio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="Portfolio Repository on GitHub"
+                >
+                  <Github size={16} color="currentColor" />
+                  <span>Portfolio Repository</span>
                   <ExternalLink size={12} color="var(--text-muted)" />
                 </a>
               </li>

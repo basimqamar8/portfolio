@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react';
-import { X, Award, ExternalLink, Calendar, Building, Sparkles } from 'lucide-react';
+import { X, Award, Building, Calendar, Sparkles } from 'lucide-react';
 
 /**
  * CertificateModal Component
  * Accessible, high-resolution click-to-enlarge lightbox for the DevelopersHub Corporation Certificate of Achievement.
+ * Minimalist, dark-matte frame with refined typography.
  */
 export default function CertificateModal({ isOpen, onClose }) {
   useEffect(() => {
@@ -34,8 +35,8 @@ export default function CertificateModal({ isOpen, onClose }) {
         left: 0,
         width: '100vw',
         height: '100vh',
-        backgroundColor: 'rgba(5, 7, 12, 0.92)',
-        backdropFilter: 'blur(10px)',
+        backgroundColor: 'rgba(0, 0, 0, 0.92)',
+        backdropFilter: 'blur(12px)',
         zIndex: 1000,
         display: 'flex',
         alignItems: 'center',
@@ -51,13 +52,13 @@ export default function CertificateModal({ isOpen, onClose }) {
           maxWidth: '880px',
           width: '100%',
           maxHeight: '92vh',
-          backgroundColor: 'var(--bg-card)',
-          borderRadius: 'var(--radius-lg)',
-          border: '1px solid rgba(0, 242, 254, 0.3)',
+          backgroundColor: '#0c0c0c',
+          borderRadius: '16px',
+          border: '1px solid rgba(255, 255, 255, 0.12)',
           overflow: 'hidden',
           display: 'flex',
           flexDirection: 'column',
-          boxShadow: 'var(--shadow-lg), 0 0 40px rgba(0, 242, 254, 0.15)',
+          boxShadow: '0 24px 60px rgba(0, 0, 0, 0.9)',
         }}
       >
         {/* Header bar */}
@@ -67,8 +68,8 @@ export default function CertificateModal({ isOpen, onClose }) {
             alignItems: 'center',
             justifyContent: 'space-between',
             padding: '1rem 1.5rem',
-            backgroundColor: 'rgba(7, 9, 14, 0.95)',
-            borderBottom: '1px solid var(--border-subtle)',
+            backgroundColor: '#080808',
+            borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
@@ -77,19 +78,19 @@ export default function CertificateModal({ isOpen, onClose }) {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.35rem',
-                fontSize: '0.78rem',
-                fontWeight: 700,
-                color: '#fbbf24',
-                backgroundColor: 'rgba(251, 191, 36, 0.12)',
-                padding: '0.25rem 0.65rem',
+                fontSize: '0.76rem',
+                fontWeight: 600,
+                color: '#e5c07b',
+                backgroundColor: 'rgba(229, 192, 123, 0.08)',
+                padding: '0.2rem 0.65rem',
                 borderRadius: 'var(--radius-full)',
-                border: '1px solid rgba(251, 191, 36, 0.3)',
+                border: '1px solid rgba(229, 192, 123, 0.25)',
               }}
             >
               <Award size={13} />
               Best Award Emblem
             </span>
-            <span style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+            <span style={{ fontSize: '0.92rem', fontWeight: 600, color: 'var(--text-primary)' }}>
               Certificate of Achievement &bull; DevelopersHub Corporation
             </span>
           </div>
@@ -100,7 +101,7 @@ export default function CertificateModal({ isOpen, onClose }) {
             aria-label="Close modal"
             style={{
               background: 'rgba(255, 255, 255, 0.05)',
-              border: '1px solid var(--border-subtle)',
+              border: '1px solid rgba(255, 255, 255, 0.1)',
               color: 'var(--text-secondary)',
               cursor: 'pointer',
               borderRadius: '6px',
@@ -112,7 +113,7 @@ export default function CertificateModal({ isOpen, onClose }) {
               transition: 'all var(--transition-fast)',
             }}
           >
-            <X size={18} />
+            <X size={16} />
           </button>
         </div>
 
@@ -121,11 +122,11 @@ export default function CertificateModal({ isOpen, onClose }) {
           style={{
             flex: 1,
             overflow: 'auto',
-            backgroundColor: '#05070c',
+            backgroundColor: '#040404',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '1rem',
+            padding: '1.25rem',
           }}
         >
           <img
@@ -136,7 +137,7 @@ export default function CertificateModal({ isOpen, onClose }) {
               maxHeight: '68vh',
               objectFit: 'contain',
               borderRadius: '8px',
-              boxShadow: '0 8px 30px rgba(0, 0, 0, 0.6)',
+              boxShadow: '0 8px 30px rgba(0, 0, 0, 0.7)',
               display: 'block',
             }}
           />
@@ -146,8 +147,8 @@ export default function CertificateModal({ isOpen, onClose }) {
         <div
           style={{
             padding: '1rem 1.5rem',
-            backgroundColor: 'rgba(7, 9, 14, 0.95)',
-            borderTop: '1px solid var(--border-subtle)',
+            backgroundColor: '#080808',
+            borderTop: '1px solid rgba(255, 255, 255, 0.08)',
             display: 'flex',
             justifyContent: 'space-between',
             alignItems: 'center',
@@ -155,7 +156,7 @@ export default function CertificateModal({ isOpen, onClose }) {
             gap: '0.75rem',
           }}
         >
-          <div className="font-mono" style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+          <div className="font-mono" style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
             Program: Data Science &amp; Analytics &bull; Dates: 11 May 2026 – 22 June 2026
           </div>
 

@@ -32,7 +32,7 @@ export default function ContactForm() {
       case 'email':
         if (!value.trim()) return 'Email address is required.';
         const emailRegex = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-        if (!emailRegex.test(value.trim())) return 'Please enter a valid email address (e.g. name@domain.com).';
+        if (!emailRegex.test(value.trim())) return 'Please enter a valid email address.';
         if (value.trim().length > 255) return 'Email must not exceed 255 characters.';
         return '';
 
@@ -57,7 +57,6 @@ export default function ContactForm() {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Real-time error clearance
     if (errors[name]) {
       setErrors((prev) => ({ ...prev, [name]: validateField(name, value) }));
     }
@@ -72,7 +71,6 @@ export default function ContactForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // 1. Validate all fields
     const formErrors = {
       full_name: validateField('full_name', formData.full_name),
       email: validateField('email', formData.email),
@@ -83,28 +81,22 @@ export default function ContactForm() {
     setErrors(formErrors);
 
     const hasErrors = Object.values(formErrors).some((err) => Boolean(err));
-    if (hasErrors) {
-      return;
-    }
+    if (hasErrors) return;
 
-    // 2. Prevent accidental repeated clicks
     if (isSubmitting) return;
 
     setIsSubmitting(true);
     setSubmissionState({ status: 'loading', message: '', submissionId: null });
 
     try {
-      // 3. Make real POST request to FastAPI backend
       const response = await submitContact(formData);
 
-      // 4. Update success status strictly after backend confirmation
       setSubmissionState({
         status: 'success',
-        message: response.message || 'Your message was successfully persisted to the database!',
+        message: response.message || 'Your message was successfully received and saved.',
         submissionId: response.submission_id,
       });
 
-      // Clear inputs upon confirmed persistence
       setFormData({
         full_name: '',
         email: '',
@@ -133,19 +125,19 @@ export default function ContactForm() {
     <div
       className="contact-form-container"
       style={{
-        backgroundColor: 'var(--bg-card)',
-        border: '1px solid var(--border-card)',
-        borderRadius: 'var(--radius-lg)',
+        backgroundColor: '#0c0c0c',
+        border: '1px solid rgba(255, 255, 255, 0.08)',
+        borderRadius: '16px',
         padding: '2.5rem',
-        boxShadow: 'var(--shadow-md)',
+        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.6)',
       }}
     >
       <div style={{ marginBottom: '2rem' }}>
-        <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+        <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.4rem', letterSpacing: '-0.02em' }}>
           Send a Direct Message
         </h3>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem' }}>
-          Submissions are validated, securely processed, and persisted to the SQLite/PostgreSQL database backend.
+          Validated and securely stored directly into the database backend.
         </p>
       </div>
 
@@ -154,20 +146,20 @@ export default function ContactForm() {
         <div
           role="alert"
           style={{
-            backgroundColor: 'var(--success-bg)',
-            border: '1px solid rgba(16, 185, 129, 0.3)',
-            borderRadius: 'var(--radius-md)',
+            backgroundColor: 'rgba(34, 197, 94, 0.08)',
+            border: '1px solid rgba(34, 197, 94, 0.25)',
+            borderRadius: '10px',
             padding: '1.5rem',
             marginBottom: '2rem',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
-            <CheckCircle2 color="var(--success)" size={24} style={{ flexShrink: 0, marginTop: '2px' }} />
+            <CheckCircle2 color="var(--status-active)" size={22} style={{ flexShrink: 0, marginTop: '2px' }} />
             <div style={{ flex: 1 }}>
-              <h4 style={{ color: '#34d399', fontWeight: 700, fontSize: '1rem', marginBottom: '0.25rem' }}>
-                Message Successfully Persisted!
+              <h4 style={{ color: '#4ade80', fontWeight: 700, fontSize: '0.98rem', marginBottom: '0.25rem' }}>
+                Message Successfully Sent
               </h4>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '0.75rem' }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', marginBottom: '0.75rem' }}>
                 {submissionState.message}
               </p>
               {submissionState.submissionId && (
@@ -175,20 +167,21 @@ export default function ContactForm() {
                   className="font-mono"
                   style={{
                     display: 'inline-block',
-                    fontSize: '0.78rem',
+                    fontSize: '0.75rem',
                     color: 'var(--text-muted)',
-                    backgroundColor: 'rgba(0, 0, 0, 0.25)',
-                    padding: '0.25rem 0.6rem',
+                    backgroundColor: '#080808',
+                    padding: '0.2rem 0.55rem',
                     borderRadius: '4px',
+                    border: '1px solid rgba(255, 255, 255, 0.06)',
                   }}
                 >
-                  Database Record ID: #{submissionState.submissionId}
+                  Record ID: #{submissionState.submissionId}
                 </span>
               )}
             </div>
           </div>
           <div style={{ marginTop: '1.25rem', display: 'flex', justifyContent: 'flex-end' }}>
-            <Button variant="outline" size="sm" onClick={handleReset} icon={RefreshCw}>
+            <Button variant="secondary" size="sm" onClick={handleReset} icon={RefreshCw}>
               Send Another Inquiry
             </Button>
           </div>
@@ -200,9 +193,9 @@ export default function ContactForm() {
         <div
           role="alert"
           style={{
-            backgroundColor: 'var(--error-bg)',
-            border: '1px solid rgba(239, 68, 68, 0.3)',
-            borderRadius: 'var(--radius-md)',
+            backgroundColor: 'rgba(239, 68, 68, 0.08)',
+            border: '1px solid rgba(239, 68, 68, 0.25)',
+            borderRadius: '10px',
             padding: '1.25rem',
             marginBottom: '1.75rem',
             display: 'flex',
@@ -210,12 +203,12 @@ export default function ContactForm() {
             gap: '0.75rem',
           }}
         >
-          <AlertCircle color="var(--error)" size={22} style={{ flexShrink: 0, marginTop: '2px' }} />
+          <AlertCircle color="var(--error)" size={20} style={{ flexShrink: 0, marginTop: '2px' }} />
           <div>
-            <h4 style={{ color: '#f87171', fontWeight: 700, fontSize: '0.95rem', marginBottom: '0.2rem' }}>
+            <h4 style={{ color: '#f87171', fontWeight: 700, fontSize: '0.92rem', marginBottom: '0.2rem' }}>
               Submission Error
             </h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.86rem' }}>
               {submissionState.message}
             </p>
           </div>
@@ -224,9 +217,9 @@ export default function ContactForm() {
 
       {submissionState.status !== 'success' && (
         <form onSubmit={handleSubmit} noValidate>
-          {/* Honeypot Spam Field (Hidden from real users, caught if bots fill it) */}
+          {/* Honeypot Spam Field */}
           <div style={{ display: 'none' }} aria-hidden="true">
-            <label htmlFor="website">Leave this field blank</label>
+            <label htmlFor="website">Leave blank</label>
             <input
               type="text"
               id="website"
@@ -246,13 +239,13 @@ export default function ContactForm() {
                 htmlFor="full_name"
                 style={{
                   display: 'block',
-                  fontSize: '0.88rem',
+                  fontSize: '0.86rem',
                   fontWeight: 600,
                   color: 'var(--text-primary)',
                   marginBottom: '0.45rem',
                 }}
               >
-                Full Name <span style={{ color: 'var(--accent-cyan)' }}>*</span>
+                Full Name <span style={{ color: 'var(--text-muted)' }}>*</span>
               </label>
               <input
                 type="text"
@@ -267,17 +260,17 @@ export default function ContactForm() {
                 style={{
                   width: '100%',
                   padding: '0.75rem 1rem',
-                  borderRadius: 'var(--radius-md)',
-                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                  border: `1px solid ${errors.full_name ? 'var(--error)' : 'var(--border-subtle)'}`,
-                  color: 'var(--text-primary)',
+                  borderRadius: '8px',
+                  backgroundColor: '#080808',
+                  border: `1px solid ${errors.full_name ? 'var(--error)' : 'rgba(255, 255, 255, 0.1)'}`,
+                  color: '#ffffff',
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '0.95rem',
+                  fontSize: '0.92rem',
                   transition: 'border-color var(--transition-fast)',
                 }}
               />
               {errors.full_name && (
-                <span style={{ display: 'block', color: 'var(--error)', fontSize: '0.8rem', marginTop: '0.35rem' }}>
+                <span style={{ display: 'block', color: 'var(--error)', fontSize: '0.78rem', marginTop: '0.35rem' }}>
                   {errors.full_name}
                 </span>
               )}
@@ -289,13 +282,13 @@ export default function ContactForm() {
                 htmlFor="email"
                 style={{
                   display: 'block',
-                  fontSize: '0.88rem',
+                  fontSize: '0.86rem',
                   fontWeight: 600,
                   color: 'var(--text-primary)',
                   marginBottom: '0.45rem',
                 }}
               >
-                Email Address <span style={{ color: 'var(--accent-cyan)' }}>*</span>
+                Email Address <span style={{ color: 'var(--text-muted)' }}>*</span>
               </label>
               <input
                 type="email"
@@ -310,17 +303,17 @@ export default function ContactForm() {
                 style={{
                   width: '100%',
                   padding: '0.75rem 1rem',
-                  borderRadius: 'var(--radius-md)',
-                  backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                  border: `1px solid ${errors.email ? 'var(--error)' : 'var(--border-subtle)'}`,
-                  color: 'var(--text-primary)',
+                  borderRadius: '8px',
+                  backgroundColor: '#080808',
+                  border: `1px solid ${errors.email ? 'var(--error)' : 'rgba(255, 255, 255, 0.1)'}`,
+                  color: '#ffffff',
                   fontFamily: 'var(--font-sans)',
-                  fontSize: '0.95rem',
+                  fontSize: '0.92rem',
                   transition: 'border-color var(--transition-fast)',
                 }}
               />
               {errors.email && (
-                <span style={{ display: 'block', color: 'var(--error)', fontSize: '0.8rem', marginTop: '0.35rem' }}>
+                <span style={{ display: 'block', color: 'var(--error)', fontSize: '0.78rem', marginTop: '0.35rem' }}>
                   {errors.email}
                 </span>
               )}
@@ -333,13 +326,13 @@ export default function ContactForm() {
               htmlFor="subject"
               style={{
                 display: 'block',
-                fontSize: '0.88rem',
+                fontSize: '0.86rem',
                 fontWeight: 600,
                 color: 'var(--text-primary)',
                 marginBottom: '0.45rem',
               }}
             >
-              Subject <span style={{ color: 'var(--accent-cyan)' }}>*</span>
+              Subject <span style={{ color: 'var(--text-muted)' }}>*</span>
             </label>
             <input
               type="text"
@@ -348,23 +341,23 @@ export default function ContactForm() {
               value={formData.subject}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="e.g. AI Engineering Opportunity / AgroVision Feedback"
+              placeholder="e.g. AI Engineering Opportunity"
               maxLength={150}
               disabled={isSubmitting}
               style={{
                 width: '100%',
                 padding: '0.75rem 1rem',
-                borderRadius: 'var(--radius-md)',
-                backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                border: `1px solid ${errors.subject ? 'var(--error)' : 'var(--border-subtle)'}`,
-                color: 'var(--text-primary)',
+                borderRadius: '8px',
+                backgroundColor: '#080808',
+                border: `1px solid ${errors.subject ? 'var(--error)' : 'rgba(255, 255, 255, 0.1)'}`,
+                color: '#ffffff',
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.95rem',
+                fontSize: '0.92rem',
                 transition: 'border-color var(--transition-fast)',
               }}
             />
             {errors.subject && (
-              <span style={{ display: 'block', color: 'var(--error)', fontSize: '0.8rem', marginTop: '0.35rem' }}>
+              <span style={{ display: 'block', color: 'var(--error)', fontSize: '0.78rem', marginTop: '0.35rem' }}>
                 {errors.subject}
               </span>
             )}
@@ -376,14 +369,14 @@ export default function ContactForm() {
               <label
                 htmlFor="message"
                 style={{
-                  fontSize: '0.88rem',
+                  fontSize: '0.86rem',
                   fontWeight: 600,
                   color: 'var(--text-primary)',
                 }}
               >
-                Message <span style={{ color: 'var(--accent-cyan)' }}>*</span>
+                Message <span style={{ color: 'var(--text-muted)' }}>*</span>
               </label>
-              <span className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
+              <span className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
                 {formData.message.length} / 5000
               </span>
             </div>
@@ -394,25 +387,25 @@ export default function ContactForm() {
               value={formData.message}
               onChange={handleChange}
               onBlur={handleBlur}
-              placeholder="Please write your inquiry or opportunity details here..."
+              placeholder="Write your inquiry or opportunity details here..."
               maxLength={5000}
               disabled={isSubmitting}
               style={{
                 width: '100%',
                 padding: '0.85rem 1rem',
-                borderRadius: 'var(--radius-md)',
-                backgroundColor: 'rgba(0, 0, 0, 0.3)',
-                border: `1px solid ${errors.message ? 'var(--error)' : 'var(--border-subtle)'}`,
-                color: 'var(--text-primary)',
+                borderRadius: '8px',
+                backgroundColor: '#080808',
+                border: `1px solid ${errors.message ? 'var(--error)' : 'rgba(255, 255, 255, 0.1)'}`,
+                color: '#ffffff',
                 fontFamily: 'var(--font-sans)',
-                fontSize: '0.95rem',
+                fontSize: '0.92rem',
                 lineHeight: 1.6,
                 resize: 'vertical',
                 transition: 'border-color var(--transition-fast)',
               }}
             />
             {errors.message && (
-              <span style={{ display: 'block', color: 'var(--error)', fontSize: '0.8rem', marginTop: '0.35rem' }}>
+              <span style={{ display: 'block', color: 'var(--error)', fontSize: '0.78rem', marginTop: '0.35rem' }}>
                 {errors.message}
               </span>
             )}
@@ -420,8 +413,8 @@ export default function ContactForm() {
 
           {/* Form Actions */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-            <p className="font-mono" style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
-              Protected with rate-limiting &amp; spam mitigation.
+            <p className="font-mono" style={{ fontSize: '0.74rem', color: 'var(--text-dim)' }}>
+              Rate-limited &bull; Database persisted
             </p>
 
             <Button
@@ -433,7 +426,7 @@ export default function ContactForm() {
               icon={Send}
               iconPosition="right"
             >
-              {isSubmitting ? 'Sending to Database...' : 'Send Message'}
+              {isSubmitting ? 'Sending...' : 'Send Message'}
             </Button>
           </div>
         </form>

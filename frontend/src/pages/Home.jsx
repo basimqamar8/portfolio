@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Mail, Sparkles, Building2, Calendar, Award, GraduationCap, Cpu, Layers } from 'lucide-react';
+import { ArrowRight, Mail, GraduationCap, Cpu, Award } from 'lucide-react';
 import Button from '../components/Button';
 import SectionHeading from '../components/SectionHeading';
 import HeroVisual from '../components/HeroVisual';
@@ -9,25 +9,20 @@ import '../styles/Home.css';
 
 export default function Home() {
   return (
-    <div className="home-page" style={{ position: 'relative' }}>
-      {/* Background drifting glow orbs */}
-      <div className="ambient-glow-orb-1" aria-hidden="true"></div>
-      <div className="ambient-glow-orb-2" aria-hidden="true"></div>
-
+    <div className="home-page">
       {/* 1. Hero Section */}
       <section className="hero-section">
         <div className="container hero-grid">
           {/* Left Column: Introduction & Primary Actions */}
           <div className="hero-content">
             <div className="hero-eyebrow">
-              <span className="badge badge-cyan font-mono">
-                <Sparkles size={13} />
+              <span className="badge badge-minimal font-mono">
                 Final-Semester CS Student &bull; University of South Asia
               </span>
             </div>
 
             <h1 className="hero-title">
-              Hi, I'm <span className="hero-title-accent">Basim Qamar</span>.
+              Hi, I'm Basim Qamar.
             </h1>
 
             <p className="hero-subtitle">
@@ -41,17 +36,17 @@ export default function Home() {
             </p>
 
             {/* Quick Highlights Bar */}
-            <div className="hero-quick-stats">
+            <div className="hero-quick-stats font-mono">
               <span className="quick-stat-badge">
-                <GraduationCap size={14} color="var(--accent-cyan)" />
+                <GraduationCap size={13} color="var(--text-muted)" />
                 BSCS &bull; Univ. of South Asia
               </span>
               <span className="quick-stat-badge">
-                <Cpu size={14} color="var(--accent-cyan)" />
+                <Cpu size={13} color="var(--text-muted)" />
                 AgroVision App Developer
               </span>
               <span className="quick-stat-badge">
-                <Award size={14} color="#fbbf24" />
+                <Award size={13} color="var(--award-gold)" />
                 DeveloperHub Corp Intern
               </span>
             </div>
@@ -78,15 +73,15 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Column: Basim's Portrait with Ambient Glow & Floating Badges */}
+          {/* Right Column: Basim's Minimalist Portrait Presentation */}
           <div className="hero-visual-wrapper">
             <HeroVisual />
           </div>
         </div>
       </section>
 
-      {/* 2. Selected Work Preview — AgroVision with AI Scanning Animation */}
-      <section className="home-section section" style={{ borderTop: '1px solid var(--border-subtle)', position: 'relative', zIndex: 2 }}>
+      {/* 2. Selected Work Preview — AgroVision */}
+      <section className="home-section section" style={{ borderTop: '1px solid var(--border-subtle)' }}>
         <div className="container">
           <SectionHeading
             eyebrow="Featured Project"
@@ -109,21 +104,22 @@ export default function Home() {
               "PostgreSQL (Neon)"
             ]}
             githubUrl="https://github.com/basimqamar8/AgroVision"
+            demoUrl="https://agrovision-bice.vercel.app/"
             detailsUrl="/about#agrovision"
           />
         </div>
       </section>
 
       {/* 3. Internship Highlight — DeveloperHub Corporation */}
-      <section className="home-section section" style={{ borderTop: '1px solid var(--border-subtle)', backgroundColor: 'rgba(255, 255, 255, 0.01)', position: 'relative', zIndex: 2 }}>
+      <section className="home-section section" style={{ borderTop: '1px solid var(--border-subtle)', backgroundColor: 'rgba(255, 255, 255, 0.005)' }}>
         <div className="container">
           <SectionHeading
-            eyebrow="Industry Exposure"
+            eyebrow="Industry Experience"
             title="Internship Recognition"
             subtitle="Verified six-week professional program in Data Science & Analytics with performance distinction."
           />
 
-          <div style={{ maxWidth: '840px' }}>
+          <div style={{ maxWidth: '880px' }}>
             <ExperienceCard />
           </div>
         </div>

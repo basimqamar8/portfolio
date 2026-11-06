@@ -35,7 +35,6 @@ export default function About() {
   const location = useLocation();
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // Handle anchor scroll for /about#agrovision
   useEffect(() => {
     if (location.hash) {
       const elem = document.querySelector(location.hash);
@@ -47,7 +46,6 @@ export default function About() {
     }
   }, [location]);
 
-  // Documented screenshots from the AgroVision project
   const screenshots = [
     {
       src: '/assets/agrovision/Web Dashboard.jpeg',
@@ -98,7 +96,7 @@ export default function About() {
           />
 
           <div className="about-intro-grid">
-            {/* Left Column: Profile Card */}
+            {/* Left Column: Minimal Profile Card */}
             <aside className="profile-card">
               <div className="profile-img-wrap">
                 <img
@@ -106,10 +104,9 @@ export default function About() {
                   alt="Basim Qamar"
                   className="profile-img"
                   onError={(e) => {
-                    // Fallback to initials avatar if image is unavailable
                     e.target.style.display = 'none';
                     e.target.parentElement.innerHTML = `
-                      <div style="width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #0c121e; color: #00f2fe; font-size: 2.5rem; font-weight: 800; font-family: monospace;">
+                      <div style="width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #121212; color: #ffffff; font-size: 2.2rem; font-weight: 700; font-family: monospace;">
                         BQ
                       </div>
                     `;
@@ -122,15 +119,15 @@ export default function About() {
 
               <div className="profile-quick-details">
                 <div className="quick-detail-item">
-                  <GraduationCap size={16} color="var(--accent-cyan)" />
+                  <GraduationCap size={15} color="var(--text-muted)" />
                   <span>BS Computer Science (Final Sem)</span>
                 </div>
                 <div className="quick-detail-item">
-                  <Building size={16} color="var(--accent-cyan)" />
+                  <Building size={15} color="var(--text-muted)" />
                   <span>University of South Asia</span>
                 </div>
                 <div className="quick-detail-item">
-                  <Code2 size={16} color="var(--accent-cyan)" />
+                  <Code2 size={15} color="var(--text-muted)" />
                   <span>Frontend / App Developer (FYP)</span>
                 </div>
               </div>
@@ -140,14 +137,14 @@ export default function About() {
             <div className="about-narrative">
               <div
                 style={{
-                  backgroundColor: 'var(--bg-card)',
-                  border: '1px solid var(--border-card)',
-                  borderRadius: 'var(--radius-lg)',
+                  backgroundColor: '#0c0c0c',
+                  border: '1px solid rgba(255, 255, 255, 0.08)',
+                  borderRadius: '16px',
                   padding: '2.25rem',
                   marginBottom: '2rem',
                 }}
               >
-                <h3 style={{ fontSize: '1.4rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '1rem' }}>
+                <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '1rem', letterSpacing: '-0.02em' }}>
                   Professional Background
                 </h3>
                 <p style={{ marginBottom: '1rem' }}>
@@ -173,20 +170,20 @@ export default function About() {
               {/* Education Card */}
               <div className="education-card">
                 <div className="education-icon-box">
-                  <GraduationCap size={28} />
+                  <GraduationCap size={24} />
                 </div>
                 <div style={{ flex: 1 }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.35rem' }}>
-                    <h4 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+                    <h4 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>
                       Bachelor of Science in Computer Science (BSCS)
                     </h4>
-                    <span className="badge badge-cyan font-mono">Final Semester</span>
+                    <span className="badge badge-minimal font-mono">Final Semester</span>
                   </div>
-                  <p style={{ fontSize: '1rem', color: 'var(--accent-cyan)', fontWeight: 600, marginBottom: '0.5rem' }}>
+                  <p style={{ fontSize: '0.95rem', color: '#ffffff', fontWeight: 600, marginBottom: '0.45rem' }}>
                     University of South Asia
                   </p>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--text-secondary)' }}>
-                    Department of Computer Science &bull; Rigorous coursework in algorithms, data structures, artificial intelligence, software engineering, and database systems.
+                  <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                    Department of Computer Science &bull; Coursework in algorithms, data structures, artificial intelligence, software engineering, and database systems.
                   </p>
                 </div>
               </div>
@@ -196,12 +193,12 @@ export default function About() {
       </section>
 
       {/* 2. Technical Skills Section */}
-      <section className="section" style={{ borderTop: '1px solid var(--border-subtle)', backgroundColor: 'rgba(255, 255, 255, 0.01)' }}>
+      <section className="section" style={{ borderTop: '1px solid var(--border-subtle)', backgroundColor: 'rgba(255, 255, 255, 0.005)' }}>
         <div className="container">
           <SectionHeading
             eyebrow="Competencies"
             title="Technical Skills"
-            subtitle="Organized technology groups distinguishing documented project experience from general proficiency. No misleading percentage bars."
+            subtitle="Organized technology groups distinguishing documented project experience from general proficiency. No progress bars."
           />
 
           <div className="skills-grid">
@@ -282,7 +279,7 @@ export default function About() {
             subtitle="Verified six-week Data Science & Analytics program evaluated according to the issued Certificate of Achievement."
           />
 
-          <div style={{ maxWidth: '840px' }}>
+          <div style={{ maxWidth: '880px' }}>
             <ExperienceCard />
           </div>
         </div>
@@ -301,10 +298,10 @@ export default function About() {
           <div className="fyp-overview-banner">
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '1rem', marginBottom: '1.25rem' }}>
               <div>
-                <span className="badge badge-cyan font-mono" style={{ marginBottom: '0.4rem' }}>
+                <span className="badge badge-minimal font-mono" style={{ marginBottom: '0.4rem' }}>
                   Project Overview
                 </span>
-                <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)' }}>
+                <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
                   Platform Scope &amp; Architecture
                 </h3>
               </div>
@@ -326,12 +323,12 @@ export default function About() {
                   external={true}
                   icon={Github}
                 >
-                  View Source Code on GitHub
+                  View GitHub
                 </Button>
               </div>
             </div>
 
-            <p style={{ color: 'var(--text-secondary)', fontSize: '1rem', lineHeight: 1.8, marginBottom: '1.25rem' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.96rem', lineHeight: 1.8, marginBottom: '1.25rem' }}>
               <strong>AgroVision</strong> is an AI-powered agricultural platform designed to help farmers
               identify crop pests and diseases from smartphone images and monitor the historical health of
               farm plots through a Digital Twin system. The platform combines computer vision, explainable AI
@@ -342,17 +339,17 @@ export default function About() {
             {/* Problem Being Addressed */}
             <div
               style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.25)',
-                borderLeft: '3px solid var(--accent-cyan)',
-                borderRadius: '0 var(--radius-md) var(--radius-md) 0',
+                backgroundColor: '#080808',
+                borderLeft: '2px solid #ffffff',
+                borderRadius: '0 8px 8px 0',
                 padding: '1.25rem 1.5rem',
                 marginTop: '1.25rem',
               }}
             >
-              <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
+              <h4 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
                 Problem Being Addressed
               </h4>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem', lineHeight: 1.7 }}>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.7 }}>
                 Traditional crop monitoring often leads to late disease detection, lack of historical records across seasons,
                 and indiscriminate pesticide usage. AgroVision provides early, image-based crop disease identification and
                 maintains plot-level historical records so farmers can observe changes in crop health over time and make more
@@ -364,7 +361,7 @@ export default function About() {
 
           {/* Key Documented Features (8 cards) */}
           <div style={{ marginBottom: '2.5rem' }}>
-            <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '1.25rem' }}>
+            <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '1.25rem', letterSpacing: '-0.02em' }}>
               Key Documented Features
             </h3>
 
@@ -372,12 +369,12 @@ export default function About() {
               {/* Feature 1 */}
               <div className="feature-card">
                 <div className="feature-icon-wrap">
-                  <Camera size={20} />
+                  <Camera size={18} />
                 </div>
-                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
                   Crop Disease Detection
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Uses YOLOv8 for object localization with bounding boxes and EfficientNetB0 for accurate disease classification on leaf images.
                 </p>
               </div>
@@ -385,12 +382,12 @@ export default function About() {
               {/* Feature 2 */}
               <div className="feature-card">
                 <div className="feature-icon-wrap">
-                  <Eye size={20} />
+                  <Eye size={18} />
                 </div>
-                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
                   Explainable AI (Grad-CAM)
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Generates Grad-CAM heatmaps to visualize the specific image regions contributing to the neural network predictions.
                 </p>
               </div>
@@ -398,12 +395,12 @@ export default function About() {
               {/* Feature 3 */}
               <div className="feature-card">
                 <div className="feature-icon-wrap">
-                  <Layers size={20} />
+                  <Layers size={18} />
                 </div>
-                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
                   Digital Twin Farm Monitoring
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Maintains continuous plot-level records and Three.js 3D representations to track health status, disease spread, and treatment history.
                 </p>
               </div>
@@ -411,12 +408,12 @@ export default function About() {
               {/* Feature 4 */}
               <div className="feature-card">
                 <div className="feature-icon-wrap">
-                  <CloudRain size={20} />
+                  <CloudRain size={18} />
                 </div>
-                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
                   Weather Integration
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Retrieves real-time atmospheric conditions and precipitation forecasts via AccuWeather API to support timely field operations.
                 </p>
               </div>
@@ -424,12 +421,12 @@ export default function About() {
               {/* Feature 5 */}
               <div className="feature-card">
                 <div className="feature-icon-wrap">
-                  <Camera size={20} />
+                  <Camera size={18} />
                 </div>
-                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
                   Live Video Monitoring
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Provides camera-based live monitoring of farm plots, subject to local camera hardware and network connectivity.
                 </p>
               </div>
@@ -437,12 +434,12 @@ export default function About() {
               {/* Feature 6 */}
               <div className="feature-card">
                 <div className="feature-icon-wrap">
-                  <MessageSquare size={20} />
+                  <MessageSquare size={18} />
                 </div>
-                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
                   Agricultural Chatbot
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Offers retrieval-based agricultural information and supportive guidance in both English and Urdu for local farmers.
                 </p>
               </div>
@@ -450,12 +447,12 @@ export default function About() {
               {/* Feature 7 */}
               <div className="feature-card">
                 <div className="feature-icon-wrap">
-                  <FileSpreadsheet size={20} />
+                  <FileSpreadsheet size={18} />
                 </div>
-                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
                   History &amp; Reports
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Stores detection logs with timestamps, model confidence scores, and GPS coordinates, exportable to CSV and PDF formats.
                 </p>
               </div>
@@ -463,12 +460,12 @@ export default function About() {
               {/* Feature 8 */}
               <div className="feature-card">
                 <div className="feature-icon-wrap">
-                  <LayoutDashboard size={20} />
+                  <LayoutDashboard size={18} />
                 </div>
-                <h4 style={{ fontSize: '1.05rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
+                <h4 style={{ fontSize: '1.02rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.4rem' }}>
                   Farm Dashboard
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Unifies plot health statistics, recent scans, severe alerts, and administrative management into a centralized dashboard.
                 </p>
               </div>
@@ -478,10 +475,10 @@ export default function About() {
           {/* Actual Project Screenshots Showcase */}
           <div style={{ marginBottom: '3.5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.25rem', flexWrap: 'wrap', gap: '0.5rem' }}>
-              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+              <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.02em' }}>
                 System Screenshots &amp; Interfaces
               </h3>
-              <span className="font-mono" style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+              <span className="font-mono" style={{ fontSize: '0.78rem', color: 'var(--text-muted)' }}>
                 Click any image to enlarge
               </span>
             </div>
@@ -497,7 +494,7 @@ export default function About() {
                     <img src={item.src} alt={item.title} />
                   </div>
                   <div className="screenshot-meta">
-                    <h5 style={{ fontSize: '0.95rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
+                    <h5 style={{ fontSize: '0.92rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
                       {item.title}
                     </h5>
                     <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)', lineHeight: 1.5 }}>
@@ -512,53 +509,53 @@ export default function About() {
           {/* AI and Machine Learning Technologies */}
           <div
             style={{
-              backgroundColor: 'var(--bg-card)',
-              border: '1px solid var(--border-card)',
-              borderRadius: 'var(--radius-lg)',
+              backgroundColor: '#0c0c0c',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              borderRadius: '16px',
               padding: '2.25rem',
               marginBottom: '3rem',
             }}
           >
-            <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '1rem' }}>
+            <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.85rem', letterSpacing: '-0.02em' }}>
               AI and Machine Learning Pipeline
             </h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.7, marginBottom: '1.5rem' }}>
               The machine learning subsystem in AgroVision leverages a specialized dual-model architecture to handle disease identification across different agricultural visual domains:
             </p>
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
-              <div style={{ padding: '1.25rem', borderRadius: 'var(--radius-md)', backgroundColor: 'rgba(0, 0, 0, 0.25)', border: '1px solid var(--border-subtle)' }}>
-                <h4 style={{ color: 'var(--accent-cyan)', fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.4rem' }}>
+              <div style={{ padding: '1.25rem', borderRadius: '10px', backgroundColor: '#070707', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                <h4 style={{ color: '#ffffff', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.4rem' }}>
                   YOLOv8 Localization
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Identifies and localizes relevant crop or disease regions directly on uploaded imagery with precise bounding boxes.
                 </p>
               </div>
 
-              <div style={{ padding: '1.25rem', borderRadius: 'var(--radius-md)', backgroundColor: 'rgba(0, 0, 0, 0.25)', border: '1px solid var(--border-subtle)' }}>
-                <h4 style={{ color: 'var(--accent-cyan)', fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.4rem' }}>
+              <div style={{ padding: '1.25rem', borderRadius: '10px', backgroundColor: '#070707', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                <h4 style={{ color: '#ffffff', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.4rem' }}>
                   EfficientNetB0 Classifier
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Pretrained with ImageNet transfer learning to classify crop leaf diseases across tomato, potato, and pepper samples.
                 </p>
               </div>
 
-              <div style={{ padding: '1.25rem', borderRadius: 'var(--radius-md)', backgroundColor: 'rgba(0, 0, 0, 0.25)', border: '1px solid var(--border-subtle)' }}>
-                <h4 style={{ color: '#c4b5fd', fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.4rem' }}>
+              <div style={{ padding: '1.25rem', borderRadius: '10px', backgroundColor: '#070707', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                <h4 style={{ color: '#ffffff', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.4rem' }}>
                   Grad-CAM Heatmaps
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Provides visual explanation heatmaps highlighting the pixel regions that contributed most significantly to the model classification.
                 </p>
               </div>
 
-              <div style={{ padding: '1.25rem', borderRadius: 'var(--radius-md)', backgroundColor: 'rgba(0, 0, 0, 0.25)', border: '1px solid var(--border-subtle)' }}>
-                <h4 style={{ color: '#c4b5fd', fontWeight: 700, fontSize: '1.1rem', marginBottom: '0.4rem' }}>
+              <div style={{ padding: '1.25rem', borderRadius: '10px', backgroundColor: '#070707', border: '1px solid rgba(255, 255, 255, 0.06)' }}>
+                <h4 style={{ color: '#ffffff', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.4rem' }}>
                   TensorFlow / Keras Stack
                 </h4>
-                <p style={{ fontSize: '0.88rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.86rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
                   Deep learning development and inference pipeline specified in the project implementation architecture.
                 </p>
               </div>
@@ -567,60 +564,60 @@ export default function About() {
 
           {/* My Documented Team Contribution */}
           <div className="contribution-card">
-            <span className="badge badge-cyan font-mono" style={{ marginBottom: '0.5rem' }}>
+            <span className="badge badge-minimal font-mono" style={{ marginBottom: '0.5rem' }}>
               Documented Responsibility
             </span>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.5rem' }}>
+            <h3 style={{ fontSize: '1.45rem', fontWeight: 800, color: 'var(--text-primary)', marginBottom: '0.5rem', letterSpacing: '-0.02em' }}>
               My Role: Frontend / App Developer
             </h3>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.95rem', lineHeight: 1.7, marginBottom: '1.25rem' }}>
+            <p style={{ color: 'var(--text-secondary)', fontSize: '0.94rem', lineHeight: 1.7, marginBottom: '1.25rem' }}>
               According to the approved Capstone documentation and FYP Final Report, my specific responsibilities encompassed:
             </p>
 
             <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '2rem' }}>
-              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: '0.92rem' }}>
-                <CheckCircle2 size={18} color="var(--accent-cyan)" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                <CheckCircle2 size={16} color="#ffffff" style={{ flexShrink: 0, marginTop: '3px' }} />
                 <span><strong>React Native &amp; Expo Development:</strong> Built the cross-platform mobile client with React Native 0.76.7 and Expo SDK 52 for responsive field use.</span>
               </li>
-              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: '0.92rem' }}>
-                <CheckCircle2 size={18} color="var(--accent-cyan)" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                <CheckCircle2 size={16} color="#ffffff" style={{ flexShrink: 0, marginTop: '3px' }} />
                 <span><strong>Three.js 3D Visualization:</strong> Engineered the 3D Digital Twin farm plot visualizer to map spatial disease history.</span>
               </li>
-              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: '0.92rem' }}>
-                <CheckCircle2 size={18} color="var(--accent-cyan)" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                <CheckCircle2 size={16} color="#ffffff" style={{ flexShrink: 0, marginTop: '3px' }} />
                 <span><strong>API Design &amp; Integration:</strong> Structured clean REST API contracts and integrated backend endpoints with client components.</span>
               </li>
-              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: '0.92rem' }}>
-                <CheckCircle2 size={18} color="var(--accent-cyan)" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                <CheckCircle2 size={16} color="#ffffff" style={{ flexShrink: 0, marginTop: '3px' }} />
                 <span><strong>Authentication &amp; User State:</strong> Implemented role-based authentication flows and user session handling.</span>
               </li>
-              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: '0.92rem' }}>
-                <CheckCircle2 size={18} color="var(--accent-cyan)" style={{ flexShrink: 0, marginTop: '2px' }} />
+              <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', color: 'var(--text-secondary)', fontSize: '0.9rem' }}>
+                <CheckCircle2 size={16} color="#ffffff" style={{ flexShrink: 0, marginTop: '3px' }} />
                 <span><strong>PostgreSQL Database Integration:</strong> Configured database integration using Neon Serverless Cloud with local SQLite fallback.</span>
               </li>
             </ul>
 
             {/* Team Division Acknowledgement */}
-            <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1.25rem' }}>
-              <h5 style={{ fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '0.75rem' }}>
+            <div style={{ borderTop: '1px solid rgba(255, 255, 255, 0.08)', paddingTop: '1.25rem' }}>
+              <h5 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.06em', color: 'var(--text-muted)', marginBottom: '0.85rem' }}>
                 AgroVision Capstone Team Division of Responsibilities
               </h5>
               <div className="team-division-grid">
                 <div className="team-member-pill">
-                  <span className="font-mono" style={{ fontSize: '0.75rem', color: 'var(--accent-cyan)' }}>Frontend / App Developer</span>
-                  <h5 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.2rem 0' }}>Basim Qamar</h5>
+                  <span className="font-mono" style={{ fontSize: '0.72rem', color: '#ffffff' }}>Frontend / App Developer</span>
+                  <h5 style={{ fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.2rem 0' }}>Basim Qamar</h5>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>React Native 0.76.7, Expo 52, Three.js, API Design, Authentication, PostgreSQL (Neon)</p>
                 </div>
 
                 <div className="team-member-pill">
-                  <span className="font-mono" style={{ fontSize: '0.75rem', color: '#c4b5fd' }}>AI System Development</span>
-                  <h5 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.2rem 0' }}>Ahmed Jamil</h5>
+                  <span className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>AI System Development</span>
+                  <h5 style={{ fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.2rem 0' }}>Ahmed Jamil</h5>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>Deep Learning, YOLOv8, EfficientNetB0, Model Evaluation &amp; Training</p>
                 </div>
 
                 <div className="team-member-pill">
-                  <span className="font-mono" style={{ fontSize: '0.75rem', color: '#93c5fd' }}>Backend Development</span>
-                  <h5 style={{ fontSize: '1rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.2rem 0' }}>Muhammad Baqir</h5>
+                  <span className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>Backend Development</span>
+                  <h5 style={{ fontSize: '0.98rem', fontWeight: 700, color: 'var(--text-primary)', margin: '0.2rem 0' }}>Muhammad Baqir</h5>
                   <p style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>JavaScript, Tailwind CSS, Chart.js, Leaflet web interface</p>
                 </div>
               </div>
@@ -629,17 +626,17 @@ export default function About() {
 
           {/* Project Technology Stack */}
           <div style={{ marginBottom: '3rem' }}>
-            <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '1.25rem' }}>
+            <h3 style={{ fontSize: '1.35rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '1.25rem', letterSpacing: '-0.02em' }}>
               Project Technology Stack
             </h3>
 
             <div className="stack-group-grid">
               <div className="stack-group-card">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: 'var(--accent-cyan)' }}>
-                  <Smartphone size={18} />
-                  <h5 style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>Mobile App</h5>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: '#ffffff' }}>
+                  <Smartphone size={16} />
+                  <h5 style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.92rem' }}>Mobile App</h5>
                 </div>
-                <ul style={{ listStyle: 'none', fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                <ul style={{ listStyle: 'none', fontSize: '0.84rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                   <li>React Native 0.76.7</li>
                   <li>Expo SDK 52</li>
                   <li>Three.js 3D Engine</li>
@@ -647,11 +644,11 @@ export default function About() {
               </div>
 
               <div className="stack-group-card">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: 'var(--accent-cyan)' }}>
-                  <Code2 size={18} />
-                  <h5 style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>Web Interface</h5>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: '#ffffff' }}>
+                  <Code2 size={16} />
+                  <h5 style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.92rem' }}>Web Interface</h5>
                 </div>
-                <ul style={{ listStyle: 'none', fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                <ul style={{ listStyle: 'none', fontSize: '0.84rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                   <li>HTML5 / CSS3</li>
                   <li>JavaScript</li>
                   <li>Leaflet &amp; Chart.js</li>
@@ -659,11 +656,11 @@ export default function About() {
               </div>
 
               <div className="stack-group-card">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: 'var(--accent-cyan)' }}>
-                  <Server size={18} />
-                  <h5 style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>Backend &amp; APIs</h5>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: '#ffffff' }}>
+                  <Server size={16} />
+                  <h5 style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.92rem' }}>Backend &amp; APIs</h5>
                 </div>
-                <ul style={{ listStyle: 'none', fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                <ul style={{ listStyle: 'none', fontSize: '0.84rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                   <li>Python 3.11 / FastAPI</li>
                   <li>RESTful Endpoints</li>
                   <li>Role-Based Auth</li>
@@ -671,11 +668,11 @@ export default function About() {
               </div>
 
               <div className="stack-group-card">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: 'var(--accent-cyan)' }}>
-                  <Cpu size={18} />
-                  <h5 style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>AI &amp; Vision</h5>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: '#ffffff' }}>
+                  <Cpu size={16} />
+                  <h5 style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.92rem' }}>AI &amp; Vision</h5>
                 </div>
-                <ul style={{ listStyle: 'none', fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                <ul style={{ listStyle: 'none', fontSize: '0.84rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                   <li>YOLOv8 Localization</li>
                   <li>EfficientNetB0</li>
                   <li>Grad-CAM Heatmaps</li>
@@ -684,11 +681,11 @@ export default function About() {
               </div>
 
               <div className="stack-group-card">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: 'var(--accent-cyan)' }}>
-                  <Database size={18} />
-                  <h5 style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.95rem' }}>Database</h5>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem', color: '#ffffff' }}>
+                  <Database size={16} />
+                  <h5 style={{ fontWeight: 700, color: 'var(--text-primary)', fontSize: '0.92rem' }}>Database</h5>
                 </div>
-                <ul style={{ listStyle: 'none', fontSize: '0.85rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
+                <ul style={{ listStyle: 'none', fontSize: '0.84rem', color: 'var(--text-secondary)', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                   <li>PostgreSQL (Neon)</li>
                   <li>SQLite Local Fallback</li>
                   <li>GIS Spatial Attributes</li>
@@ -700,15 +697,15 @@ export default function About() {
           {/* Honest Technical Limitations & Future Work */}
           <div
             style={{
-              backgroundColor: 'rgba(255, 255, 255, 0.02)',
-              border: '1px solid var(--border-subtle)',
-              borderRadius: 'var(--radius-lg)',
+              backgroundColor: '#0c0c0c',
+              border: '1px solid rgba(255, 255, 255, 0.08)',
+              borderRadius: '16px',
               padding: '2rem',
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '1rem' }}>
-              <AlertTriangle size={20} color="#fbbf24" />
-              <h4 style={{ fontSize: '1.2rem', fontWeight: 700, color: 'var(--text-primary)' }}>
+              <AlertTriangle size={18} color="var(--text-muted)" />
+              <h4 style={{ fontSize: '1.15rem', fontWeight: 700, color: 'var(--text-primary)', letterSpacing: '-0.01em' }}>
                 Documented Limitations &amp; Future Scope
               </h4>
             </div>
@@ -719,10 +716,10 @@ export default function About() {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.25rem' }}>
               <div>
-                <h5 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
+                <h5 style={{ fontSize: '0.92rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
                   Operating Limitations
                 </h5>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
                   <li>&bull; Detection results can vary depending on camera lighting, image focus, disease stage, and training dataset boundaries.</li>
                   <li>&bull; The pesticide recommendation module has been designed conceptually but is not yet implemented.</li>
                   <li>&bull; The chatbot provides retrieval-based supportive information and does not replace expert agronomic diagnosis.</li>
@@ -731,10 +728,10 @@ export default function About() {
               </div>
 
               <div>
-                <h5 style={{ fontSize: '0.95rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
+                <h5 style={{ fontSize: '0.92rem', fontWeight: 600, color: 'var(--text-primary)', marginBottom: '0.35rem' }}>
                   Planned Future Enhancements
                 </h5>
-                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.85rem', color: 'var(--text-secondary)' }}>
+                <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0.5rem', fontSize: '0.84rem', color: 'var(--text-secondary)' }}>
                   <li>&bull; Expanding dataset diversity and validation across actual field conditions in Pakistan.</li>
                   <li>&bull; Broadening crop coverage beyond tomato, potato, and pepper to wheat, rice, and cotton.</li>
                   <li>&bull; Strengthening offline-first queuing mechanisms for low-connectivity farm plots.</li>

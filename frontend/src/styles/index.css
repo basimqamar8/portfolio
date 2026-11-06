@@ -1,66 +1,66 @@
 /* ==========================================================================
-   Basim Qamar Portfolio — Global Design System & Variables
+   Basim Qamar Portfolio — Minimal Black & Dark Design System
    ========================================================================== */
 
 :root {
-  /* Color Palette - Premium Dark Theme */
-  --bg-primary: #07090e;
-  --bg-secondary: #0d131f;
-  --bg-card: #121927;
-  --bg-card-hover: #172235;
-  --bg-glass: rgba(18, 25, 39, 0.75);
+  /* Color Palette - Minimalist True Dark */
+  --bg-primary: #000000;
+  --bg-secondary: #080808;
+  --bg-card: #0c0c0c;
+  --bg-card-hover: #141414;
+  --bg-glass: rgba(12, 12, 12, 0.85);
   --bg-badge: rgba(255, 255, 255, 0.04);
 
-  /* Accents */
-  --accent-cyan: #00f2fe;
-  --accent-cyan-muted: #06b6d4;
-  --accent-cyan-subtle: rgba(0, 242, 254, 0.1);
-  --accent-cyan-glow: rgba(0, 242, 254, 0.2);
+  /* Refined Monochromatic Accents */
+  --accent-primary: #ffffff;
+  --accent-secondary: #e4e4e7;
+  --accent-muted: #a1a1aa;
+  --accent-subtle: rgba(255, 255, 255, 0.08);
 
-  --accent-violet: #8b5cf6;
-  --accent-violet-muted: #7c3aed;
-  --accent-violet-subtle: rgba(139, 92, 246, 0.1);
-  --accent-violet-glow: rgba(139, 92, 246, 0.2);
-
-  /* Status */
-  --success: #10b981;
-  --success-bg: rgba(16, 185, 129, 0.1);
+  /* Status Colors (Subtle & Restrained) */
+  --status-active: #22c55e;
+  --status-active-bg: rgba(34, 197, 94, 0.1);
+  --success: #22c55e;
+  --success-bg: rgba(34, 197, 94, 0.08);
   --error: #ef4444;
-  --error-bg: rgba(239, 68, 68, 0.1);
+  --error-bg: rgba(239, 68, 68, 0.08);
+
+  /* Distinction Bronze/Gold for Award Emblem */
+  --award-gold: #d4af37;
+  --award-gold-bg: rgba(212, 175, 55, 0.08);
 
   /* Borders & Dividers */
-  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-subtle: rgba(255, 255, 255, 0.07);
   --border-card: rgba(255, 255, 255, 0.09);
-  --border-hover: rgba(0, 242, 254, 0.35);
+  --border-hover: rgba(255, 255, 255, 0.22);
+  --border-focus: rgba(255, 255, 255, 0.4);
 
   /* Typography */
-  --text-primary: #f8fafc;
-  --text-secondary: #94a3b8;
-  --text-muted: #64748b;
-  --text-accent: #00f2fe;
+  --text-primary: #ffffff;
+  --text-secondary: #a1a1aa;
+  --text-muted: #71717a;
+  --text-dim: #52525b;
 
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* Shadows */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 10px 30px -10px rgba(0, 0, 0, 0.55);
-  --shadow-lg: 0 20px 45px -15px rgba(0, 0, 0, 0.7);
-  --shadow-cyan-glow: 0 0 25px rgba(0, 242, 254, 0.15);
-  --shadow-violet-glow: 0 0 25px rgba(139, 92, 246, 0.15);
+  /* Shadows - Understated & Restrained */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.6);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.85);
 
   /* Layout & Geometry */
   --container-max: 1200px;
-  --header-height: 76px;
+  --header-height: 72px;
   --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
   --radius-full: 9999px;
 
   /* Transitions */
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-slow: 400ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-slow: 400ms cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* Reset & Box Sizing */
@@ -88,7 +88,7 @@ body {
   position: relative;
 }
 
-/* Background Atmosphere Gradient */
+/* Subtle, refined vignette for depth without neon colors */
 body::before {
   content: '';
   position: fixed;
@@ -96,24 +96,7 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.05) 0%, transparent 45%),
-    radial-gradient(circle at 85% 75%, rgba(0, 242, 254, 0.04) 0%, transparent 45%);
-  pointer-events: none;
-  z-index: -1;
-}
-
-/* Subtle grid texture overlay */
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
-  background-size: 60px 60px;
+  background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.02) 0%, transparent 70%);
   pointer-events: none;
   z-index: -1;
 }
@@ -123,7 +106,7 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--text-primary);
   font-weight: 700;
   line-height: 1.25;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.025em;
 }
 
 p {
@@ -139,7 +122,7 @@ a {
 }
 
 a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
-  outline: 2px solid var(--accent-cyan);
+  outline: 2px solid rgba(255, 255, 255, 0.6);
   outline-offset: 3px;
 }
 
@@ -182,22 +165,22 @@ code, .font-mono {
   font-family: var(--font-mono);
 }
 
-/* Custom Scrollbar */
+/* Custom Scrollbar - Sleek Dark */
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: #000000;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1f293d;
+  background: #1f1f1f;
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #2d3b55;
+  background: #2e2e2e;
 }
 
 /* Reduced Motion */
@@ -211,7 +194,7 @@ code, .font-mono {
 }
 
 /* ==========================================================================
-   Buttons
+   Buttons — Minimalist, High-Contrast & Elegant
    ========================================================================== */
 .btn {
   display: inline-flex;
@@ -230,55 +213,56 @@ code, .font-mono {
 }
 
 .btn:disabled, .btn-loading {
-  opacity: 0.65;
+  opacity: 0.5;
   cursor: not-allowed;
   pointer-events: none;
 }
 
 .btn-sm {
-  padding: 0.45rem 0.9rem;
-  font-size: 0.85rem;
+  padding: 0.45rem 0.95rem;
+  font-size: 0.84rem;
 }
 
 .btn-md {
-  padding: 0.7rem 1.4rem;
-  font-size: 0.95rem;
+  padding: 0.65rem 1.4rem;
+  font-size: 0.92rem;
 }
 
 .btn-lg {
-  padding: 0.85rem 1.85rem;
-  font-size: 1.05rem;
+  padding: 0.8rem 1.8rem;
+  font-size: 1rem;
 }
 
-/* Button Variants */
+/* Primary Button: Solid Crisp White on Black */
 .btn-primary {
-  background: linear-gradient(135deg, rgba(0, 242, 254, 0.12), rgba(139, 92, 246, 0.18));
-  color: #ffffff;
-  border: 1px solid rgba(0, 242, 254, 0.4);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, rgba(0, 242, 254, 0.22), rgba(139, 92, 246, 0.3));
-  border-color: var(--accent-cyan);
-  box-shadow: 0 0 20px rgba(0, 242, 254, 0.25);
-  transform: translateY(-2px);
-  color: #ffffff;
+  background: #eaeaea;
+  border-color: #eaeaea;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(255, 255, 255, 0.1);
+  color: #000000;
 }
 
+/* Secondary Button: Clean Matte Charcoal with Subtle Border */
 .btn-secondary {
-  background: var(--bg-card);
-  color: var(--text-primary);
-  border: 1px solid var(--border-card);
+  background: #111111;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background: var(--bg-card-hover);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: var(--text-primary);
-  transform: translateY(-2px);
+  background: #191919;
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: translateY(-1px);
+  color: #ffffff;
 }
 
+/* Outline Button: Pure Transparent with Fine Border */
 .btn-outline {
   background: transparent;
   color: var(--text-secondary);
@@ -287,11 +271,12 @@ code, .font-mono {
 
 .btn-outline:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.04);
-  border-color: var(--accent-cyan-muted);
-  color: var(--text-primary);
-  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+  transform: translateY(-1px);
 }
 
+/* Ghost Button */
 .btn-ghost {
   background: transparent;
   color: var(--text-secondary);
@@ -300,7 +285,7 @@ code, .font-mono {
 
 .btn-ghost:hover:not(:disabled) {
   background: rgba(255, 255, 255, 0.05);
-  color: var(--accent-cyan);
+  color: #ffffff;
 }
 
 /* Spin animation */
@@ -313,171 +298,52 @@ code, .font-mono {
   animation: spin 1s linear infinite;
 }
 
-/* Badges */
+/* ==========================================================================
+   Badges & Tags — Monochromatic & Understated
+   ========================================================================== */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.3rem 0.75rem;
+  padding: 0.25rem 0.65rem;
   border-radius: var(--radius-full);
-  font-size: 0.78rem;
-  font-weight: 600;
+  font-size: 0.76rem;
+  font-weight: 500;
   letter-spacing: 0.02em;
-  background: var(--bg-badge);
+  background: rgba(255, 255, 255, 0.04);
   border: 1px solid var(--border-subtle);
   color: var(--text-secondary);
 }
 
-.badge-cyan {
-  background: rgba(0, 242, 254, 0.08);
-  border-color: rgba(0, 242, 254, 0.25);
-  color: var(--accent-cyan);
+.badge-minimal {
+  background: rgba(255, 255, 255, 0.03);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: #e4e4e7;
 }
 
-.badge-violet {
-  background: rgba(139, 92, 246, 0.08);
-  border-color: rgba(139, 92, 246, 0.25);
-  color: #c4b5fd;
+.badge-gold {
+  background: var(--award-gold-bg);
+  border-color: rgba(212, 175, 55, 0.25);
+  color: #e5c07b;
 }
 
-/* ==========================================================================
-   Advanced Animations & Motion System
-   ========================================================================== */
-
-/* Floating animations for badges */
-@keyframes floatSlow {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(-10px) rotate(1deg);
-  }
-}
-
-@keyframes floatReverse {
-  0%, 100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(10px) rotate(-1deg);
-  }
-}
-
-/* Pulsing ambient aura */
-@keyframes pulseGlow {
-  0%, 100% {
-    box-shadow: 0 0 25px rgba(0, 242, 254, 0.2), 0 0 50px rgba(139, 92, 246, 0.1);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(0, 242, 254, 0.35), 0 0 70px rgba(139, 92, 246, 0.25);
-  }
-}
-
-/* AI Laser Scanning Beam */
-@keyframes aiScan {
-  0% {
-    top: 0%;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    top: 96%;
-    opacity: 0;
-  }
-}
-
-/* Subtle corner reticle pulse */
-@keyframes reticlePulse {
-  0%, 100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.04);
-  }
-}
-
-/* Shimmer gradient line */
-@keyframes shimmerWave {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-/* Drifting background glow orbs */
-@keyframes orbDrift1 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(40px, -30px) scale(1.08);
-  }
-  66% {
-    transform: translate(-30px, 20px) scale(0.95);
-  }
-}
-
-@keyframes orbDrift2 {
-  0%, 100% {
-    transform: translate(0px, 0px) scale(1);
-  }
-  33% {
-    transform: translate(-35px, 25px) scale(1.05);
-  }
-  66% {
-    transform: translate(25px, -35px) scale(0.92);
-  }
-}
-
-/* Background floating glow orbs */
-.ambient-glow-orb-1 {
-  position: absolute;
-  top: 10%;
-  left: 5%;
-  width: 450px;
-  height: 450px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
-  filter: blur(50px);
-  pointer-events: none;
-  z-index: 0;
-  animation: orbDrift1 18s ease-in-out infinite;
-}
-
-.ambient-glow-orb-2 {
-  position: absolute;
-  top: 45%;
-  right: 5%;
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(0, 242, 254, 0.07) 0%, transparent 70%);
-  filter: blur(60px);
-  pointer-events: none;
-  z-index: 0;
-  animation: orbDrift2 22s ease-in-out infinite;
+.badge-green {
+  background: var(--status-active-bg);
+  border-color: rgba(34, 197, 94, 0.25);
+  color: #4ade80;
 }
 
 /* Micro-interaction transitions */
 .hover-lift {
-  transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+  transition: transform var(--transition-normal), border-color var(--transition-normal), box-shadow var(--transition-normal);
 }
 
 .hover-lift:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-md);
 }
 
 .hover-glow:hover {
-  border-color: rgba(0, 242, 254, 0.45);
-  box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
+  border-color: rgba(255, 255, 255, 0.2);
 }

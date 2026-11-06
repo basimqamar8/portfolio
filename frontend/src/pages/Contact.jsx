@@ -62,7 +62,6 @@ export default function Contact() {
                 copyable={true}
                 copyText="+923003162564"
                 description="Click to call or copy number"
-                accentColor="var(--accent-cyan)"
               />
 
               {/* 2. Email */}
@@ -75,7 +74,6 @@ export default function Contact() {
                 copyable={true}
                 copyText="basimqamar8@gmail.com"
                 description="Opens directly in Gmail web composer"
-                accentColor="var(--accent-cyan)"
               />
 
               {/* 3. AgroVision Live Platform */}
@@ -86,7 +84,6 @@ export default function Contact() {
                 href="https://agrovision-bice.vercel.app/"
                 external={true}
                 description="Explore the live running AI agricultural application"
-                accentColor="#34d399"
               />
 
               {/* 4. LinkedIn */}
@@ -97,18 +94,25 @@ export default function Contact() {
                 href="https://www.linkedin.com/in/basim-qamar-12160b2a4/"
                 external={true}
                 description="Connect with Basim Qamar"
-                accentColor="#38bdf8"
               />
 
-              {/* 4. GitHub */}
+              {/* 5. GitHub Repositories */}
               <ContactCard
                 icon={Github}
-                label="Source Code &amp; Repositories"
-                value="AgroVision Repository"
+                label="AgroVision Repository"
+                value="github.com/basimqamar8/AgroVision"
                 href="https://github.com/basimqamar8/AgroVision"
                 external={true}
-                description="Browse AgroVision code &amp; commit history"
-                accentColor="#c4b5fd"
+                description="Browse Capstone code &amp; commit history"
+              />
+
+              <ContactCard
+                icon={Github}
+                label="Portfolio Source Code"
+                value="github.com/basimqamar8/portfolio"
+                href="https://github.com/basimqamar8/portfolio"
+                external={true}
+                description="Public GitHub repository for this website"
               />
 
               {/* Live Backend Connection Indicator */}

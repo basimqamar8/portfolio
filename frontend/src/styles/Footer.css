@@ -41,12 +41,12 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 0.85rem;
+  padding: 0.35rem 0.85rem;
   border-radius: var(--radius-full);
-  background: rgba(16, 185, 129, 0.08);
-  border: 1px solid rgba(16, 185, 129, 0.25);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   font-size: 0.82rem;
-  color: #34d399;
+  color: #e5e5e5;
   width: fit-content;
 }
 
@@ -54,8 +54,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #10b981;
-  box-shadow: 0 0 8px #10b981;
+  background: #22c55e;
 }
 
 .footer-col-title {
@@ -84,7 +83,7 @@
 }
 
 .footer-link-item a:hover {
-  color: var(--accent-cyan);
+  color: #ffffff;
 }
 
 .footer-contact-list {
@@ -104,7 +103,7 @@
 }
 
 .footer-contact-item a:hover {
-  color: var(--accent-cyan);
+  color: #ffffff;
   transform: translateX(3px);
 }
 
