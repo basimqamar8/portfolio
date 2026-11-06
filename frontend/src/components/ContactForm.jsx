@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle, RefreshCw } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, RefreshCw, ExternalLink } from 'lucide-react';
 import Button from './Button';
 import { submitContact } from '../services/api';
 
@@ -188,7 +188,7 @@ export default function ContactForm() {
         </div>
       )}
 
-      {/* Error Alert */}
+      {/* Error Alert with 1-Click Direct Email Fallback */}
       {submissionState.status === 'error' && (
         <div
           role="alert"
@@ -198,19 +198,60 @@ export default function ContactForm() {
             borderRadius: '10px',
             padding: '1.25rem',
             marginBottom: '1.75rem',
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: '0.75rem',
           }}
         >
-          <AlertCircle color="var(--error)" size={20} style={{ flexShrink: 0, marginTop: '2px' }} />
-          <div>
-            <h4 style={{ color: '#f87171', fontWeight: 700, fontSize: '0.92rem', marginBottom: '0.2rem' }}>
-              Submission Error
-            </h4>
-            <p style={{ color: 'var(--text-secondary)', fontSize: '0.86rem' }}>
-              {submissionState.message}
-            </p>
+          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.85rem' }}>
+            <AlertCircle color="var(--error)" size={20} style={{ flexShrink: 0, marginTop: '2px' }} />
+            <div>
+              <h4 style={{ color: '#f87171', fontWeight: 700, fontSize: '0.92rem', marginBottom: '0.2rem' }}>
+                Submission Notice
+              </h4>
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.86rem', lineHeight: 1.5 }}>
+                {submissionState.message}
+              </p>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem', paddingLeft: '2rem' }}>
+            <a
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=basimqamar8@gmail.com&su=${encodeURIComponent(formData.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(`From: ${formData.full_name || 'Visitor'} (${formData.email || 'N/A'})\n\n${formData.message || ''}`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.45rem 0.9rem',
+                borderRadius: '6px',
+                backgroundColor: '#ffffff',
+                color: '#000000',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                textDecoration: 'none',
+              }}
+            >
+              <span>Send Directly via Gmail</span>
+              <ExternalLink size={13} />
+            </a>
+
+            <a
+              href={`mailto:basimqamar8@gmail.com?subject=${encodeURIComponent(formData.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(`From: ${formData.full_name || 'Visitor'} (${formData.email || 'N/A'})\n\n${formData.message || ''}`)}`}
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                padding: '0.45rem 0.9rem',
+                borderRadius: '6px',
+                backgroundColor: '#161616',
+                border: '1px solid rgba(255, 255, 255, 0.14)',
+                color: '#ffffff',
+                fontSize: '0.8rem',
+                fontWeight: 600,
+                textDecoration: 'none',
+              }}
+            >
+              <span>Default Mail App</span>
+            </a>
           </div>
         </div>
       )}

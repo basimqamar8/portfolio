@@ -19,10 +19,15 @@ async function parseError(response) {
       }
       return String(errorData.detail);
     }
-    return errorData.message || `Request failed with status ${response.status}`;
+    if (errorData.message) return errorData.message;
   } catch {
-    return `Server returned unexpected error (${response.status} ${response.statusText})`;
+    // Non-JSON response (e.g. 404 HTML from static host)
   }
+
+  if (response.status === 404) {
+    return 'The backend contact API is not reachable on this host. You can send your message directly via email below.';
+  }
+  return `Server request failed (Status ${response.status}: ${response.statusText || 'Error'})`;
 }
 
 /**
