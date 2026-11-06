@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Mail, Phone, Linkedin, Github, Activity, ShieldCheck, Globe } from 'lucide-react';
+import { Mail, Phone, Linkedin, Github, Globe, MapPin, Clock, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import ContactCard from '../components/ContactCard';
 import ContactForm from '../components/ContactForm';
@@ -40,31 +40,20 @@ export default function Contact() {
           <SectionHeading
             eyebrow="Communication Channels"
             title="Get in Touch"
-            subtitle="I am actively seeking opportunities in AI Engineering, Computer Vision, and Full-Stack Development. Feel free to connect directly or send a message below."
+            subtitle="I am actively seeking opportunities in AI Engineering, Computer Vision, and Full-Stack Development. Let's discuss collaborations, roles, or technical innovations."
           />
 
           <div className="contact-layout-grid">
-            {/* Left Column: Direct Contact Channels */}
-            <div className="contact-cards-column">
-              <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-primary)', marginBottom: '0.25rem' }}>
-                Direct Channels
-              </h3>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', marginBottom: '0.75rem' }}>
-                Verified phone, email, and professional networks.
-              </p>
+            {/* Left Column: Direct Communication & Verified Channels */}
+            <div className="contact-left-column">
+              
+              {/* Direct Primary Channels Header */}
+              <div className="contact-group-header">
+                <span className="contact-group-label font-mono">Direct Communication</span>
+                <p className="contact-group-subtext">Direct telephone, email composer, and verified line.</p>
+              </div>
 
-              {/* 1. Phone */}
-              <ContactCard
-                icon={Phone}
-                label="Direct Phone"
-                value="+92 3003162564"
-                href="tel:+923003162564"
-                copyable={true}
-                copyText="+923003162564"
-                description="Click to call or copy number"
-              />
-
-              {/* 2. Email */}
+              {/* 1. Direct Email (Prominent) */}
               <ContactCard
                 icon={Mail}
                 label="Direct Email"
@@ -73,60 +62,99 @@ export default function Contact() {
                 external={true}
                 copyable={true}
                 copyText="basimqamar8@gmail.com"
-                description="Opens directly in Gmail web composer"
+                description="Click arrow to open directly in Gmail web composer"
+                badgeText="Primary Channel"
+                variant="prominent"
               />
 
-              {/* 3. AgroVision Live Platform */}
+              {/* 2. Direct Phone (Prominent) */}
               <ContactCard
-                icon={Globe}
-                label="Live Capstone Platform"
-                value="AgroVision Live Web App"
-                href="https://agrovision-bice.vercel.app/"
-                external={true}
-                description="Explore the live running AI agricultural application"
+                icon={Phone}
+                label="Direct Phone &amp; WhatsApp"
+                value="+92 3003162564"
+                href="tel:+923003162564"
+                copyable={true}
+                copyText="+923003162564"
+                description="Click arrow to call or copy number to dial"
+                badgeText="Direct Voice"
+                variant="prominent"
               />
 
-              {/* 4. LinkedIn */}
-              <ContactCard
-                icon={Linkedin}
-                label="Professional Network"
-                value="LinkedIn Profile"
-                href="https://www.linkedin.com/in/basim-qamar-12160b2a4/"
-                external={true}
-                description="Connect with Basim Qamar"
-              />
+              {/* Connected Platforms & Repositories 2x2 Subgrid */}
+              <div className="contact-group-header" style={{ marginTop: '0.5rem' }}>
+                <span className="contact-group-label font-mono">Professional Networks &amp; Code</span>
+              </div>
 
-              {/* 5. GitHub Repositories */}
-              <ContactCard
-                icon={Github}
-                label="AgroVision Repository"
-                value="github.com/basimqamar8/AgroVision"
-                href="https://github.com/basimqamar8/AgroVision"
-                external={true}
-                description="Browse Capstone code &amp; commit history"
-              />
+              <div className="contact-profiles-grid">
+                {/* LinkedIn */}
+                <ContactCard
+                  icon={Linkedin}
+                  label="LinkedIn"
+                  value="Basim Qamar"
+                  href="https://www.linkedin.com/in/basim-qamar-12160b2a4/"
+                  external={true}
+                  variant="compact"
+                />
 
-              <ContactCard
-                icon={Github}
-                label="Portfolio Source Code"
-                value="github.com/basimqamar8/portfolio"
-                href="https://github.com/basimqamar8/portfolio"
-                external={true}
-                description="Public GitHub repository for this website"
-              />
+                {/* AgroVision Live Web App */}
+                <ContactCard
+                  icon={Globe}
+                  label="Capstone"
+                  value="AgroVision App"
+                  href="https://agrovision-bice.vercel.app/"
+                  external={true}
+                  variant="compact"
+                />
 
-              {/* Live Backend Connection Indicator */}
-              <div className="backend-status-pill font-mono">
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
-                  <span className={`status-indicator-dot ${backendStatus}`}></span>
-                  <span style={{ fontSize: '0.8rem', color: 'var(--text-secondary)' }}>
-                    FastAPI Backend: {backendStatus === 'online' ? 'Connected & Ready' : backendStatus === 'checking' ? 'Checking connection...' : 'Offline (Local Server)'}
+                {/* AgroVision GitHub */}
+                <ContactCard
+                  icon={Github}
+                  label="AI Repo"
+                  value="AgroVision Code"
+                  href="https://github.com/basimqamar8/AgroVision"
+                  external={true}
+                  variant="compact"
+                />
+
+                {/* Portfolio GitHub */}
+                <ContactCard
+                  icon={Github}
+                  label="Portfolio"
+                  value="Website Repo"
+                  href="https://github.com/basimqamar8/portfolio"
+                  external={true}
+                  variant="compact"
+                />
+              </div>
+
+              {/* Status & Availability Overview Card */}
+              <div className="contact-status-card card-3d-depth font-mono">
+                <div className="status-card-row">
+                  <div className="status-badge-live">
+                    <span className="status-live-dot" />
+                    <span>Active &bull; Available for AI Roles</span>
+                  </div>
+                  <div className="status-location-tag">
+                    <MapPin size={12} />
+                    <span>Lahore, PK (PKT)</span>
+                  </div>
+                </div>
+
+                <div className="status-divider" />
+
+                <div className="status-backend-row">
+                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span className={`status-indicator-dot ${backendStatus}`}></span>
+                    <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
+                      FastAPI Backend: {backendStatus === 'online' ? 'Connected & Ready' : backendStatus === 'checking' ? 'Checking connection...' : 'Offline (Local Server)'}
+                    </span>
+                  </div>
+                  <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
+                    /api/contact
                   </span>
                 </div>
-                <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                  /api/contact
-                </span>
               </div>
+
             </div>
 
             {/* Right Column: Functional Contact Form */}

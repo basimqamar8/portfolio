@@ -23,8 +23,8 @@
   background-size: cover;
   background-position: center 35%;
   background-repeat: no-repeat;
-  opacity: 0.24; /* Calibrated to be visible and distinct without distracting from text */
-  filter: contrast(1.2) brightness(0.9);
+  opacity: 0.48; /* Increased opacity for rich, distinct 3D visual presence */
+  filter: contrast(1.22) brightness(0.98);
   will-change: transform;
   transform-origin: center center;
   transition: transform 0.08s ease-out;
@@ -34,10 +34,10 @@
   position: absolute;
   inset: 0;
   background: radial-gradient(
-    circle at 50% 25%,
-    rgba(0, 0, 0, 0.45) 0%,
-    rgba(0, 0, 0, 0.78) 60%,
-    #000000 100%
+    circle at 50% 30%,
+    rgba(0, 0, 0, 0.25) 0%,
+    rgba(0, 0, 0, 0.62) 65%,
+    rgba(0, 0, 0, 0.9) 100%
   );
   pointer-events: none;
 }
@@ -47,8 +47,8 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 35vh;
-  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 70%, #000000 100%);
+  height: 22vh;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.7) 60%, #000000 100%);
   pointer-events: none;
 }
 
