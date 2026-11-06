@@ -116,39 +116,6 @@
   color: var(--text-muted);
 }
 
-.status-divider {
-  height: 1px;
-  background: rgba(255, 255, 255, 0.06);
-  margin: 0.85rem 0;
-}
-
-.status-backend-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-}
-
-.status-indicator-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  display: inline-block;
-}
-
-.status-indicator-dot.online {
-  background-color: #22c55e;
-}
-
-.status-indicator-dot.offline {
-  background-color: #ef4444;
-}
-
-.status-indicator-dot.checking {
-  background-color: #fbbf24;
-}
-
 /* Contact Form Enhancements */
 .contact-form-container input:focus,
 .contact-form-container textarea:focus {

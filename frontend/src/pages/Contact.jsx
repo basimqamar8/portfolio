@@ -1,36 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { Mail, Phone, Linkedin, Github, Globe, MapPin, Clock, ShieldCheck, Sparkles, CheckCircle2 } from 'lucide-react';
+import React, { useEffect } from 'react';
+import { Mail, Phone, Linkedin, Github, Globe, MapPin } from 'lucide-react';
 import SectionHeading from '../components/SectionHeading';
 import ContactCard from '../components/ContactCard';
 import ContactForm from '../components/ContactForm';
-import { checkHealth } from '../services/api';
 import '../styles/Contact.css';
 
 export default function Contact() {
-  const [backendStatus, setBackendStatus] = useState('checking'); // 'checking' | 'online' | 'offline'
-  const [serverInfo, setServerInfo] = useState(null);
-
   useEffect(() => {
     window.scrollTo(0, 0);
-
-    // Verify live backend health
-    let isMounted = true;
-    checkHealth()
-      .then((data) => {
-        if (isMounted) {
-          setBackendStatus('online');
-          setServerInfo(data);
-        }
-      })
-      .catch(() => {
-        if (isMounted) {
-          setBackendStatus('offline');
-        }
-      });
-
-    return () => {
-      isMounted = false;
-    };
   }, []);
 
   return (
@@ -138,20 +115,6 @@ export default function Contact() {
                     <MapPin size={12} />
                     <span>Lahore, PK (PKT)</span>
                   </div>
-                </div>
-
-                <div className="status-divider" />
-
-                <div className="status-backend-row">
-                  <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span className={`status-indicator-dot ${backendStatus}`}></span>
-                    <span style={{ fontSize: '0.78rem', color: 'var(--text-secondary)' }}>
-                      FastAPI Backend: {backendStatus === 'online' ? 'Connected & Ready' : backendStatus === 'checking' ? 'Checking connection...' : 'Offline (Local Server)'}
-                    </span>
-                  </div>
-                  <span style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
-                    /api/contact
-                  </span>
                 </div>
               </div>
 
