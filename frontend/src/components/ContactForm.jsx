@@ -1,29 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useForm, ValidationError } from '@formspree/react';
 import { Send, CheckCircle2, AlertCircle, RefreshCw, ExternalLink } from 'lucide-react';
 import Button from './Button';
-import { submitContact } from '../services/api';
 
+/**
+ * ContactForm Component
+ * Integrated with Formspree (Form ID: xyeeazgj) for real-time email delivery
+ * straight to Basim Qamar's personal inbox (basimqamar8@gmail.com).
+ */
 export default function ContactForm() {
+  const [state, handleFormspreeSubmit, resetFormspree] = useForm('xyeeazgj');
+
   const [formData, setFormData] = useState({
-    full_name: '',
+    name: '',
     email: '',
     subject: '',
     message: '',
-    website: '', // Honeypot field (hidden from humans)
   });
 
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submissionState, setSubmissionState] = useState({
-    status: 'idle', // 'idle' | 'loading' | 'success' | 'error'
-    message: '',
-    submissionId: null,
-  });
 
   // Client-side field validation rules
   const validateField = (name, value) => {
     switch (name) {
-      case 'full_name':
+      case 'name':
         if (!value.trim()) return 'Full name is required.';
         if (value.trim().length < 2) return 'Full name must be at least 2 characters.';
         if (value.trim().length > 100) return 'Full name must not exceed 100 characters.';
@@ -68,11 +68,11 @@ export default function ContactForm() {
     setErrors((prev) => ({ ...prev, [name]: fieldError }));
   };
 
-  const handleSubmit = async (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
     const formErrors = {
-      full_name: validateField('full_name', formData.full_name),
+      name: validateField('name', formData.name),
       email: validateField('email', formData.email),
       subject: validateField('subject', formData.subject),
       message: validateField('message', formData.message),
@@ -83,41 +83,18 @@ export default function ContactForm() {
     const hasErrors = Object.values(formErrors).some((err) => Boolean(err));
     if (hasErrors) return;
 
-    if (isSubmitting) return;
-
-    setIsSubmitting(true);
-    setSubmissionState({ status: 'loading', message: '', submissionId: null });
-
-    try {
-      const response = await submitContact(formData);
-
-      setSubmissionState({
-        status: 'success',
-        message: response.message || 'Your message was successfully received and saved.',
-        submissionId: response.submission_id,
-      });
-
-      setFormData({
-        full_name: '',
-        email: '',
-        subject: '',
-        message: '',
-        website: '',
-      });
-      setErrors({});
-    } catch (err) {
-      setSubmissionState({
-        status: 'error',
-        message: err.message || 'Failed to submit message. Please ensure the backend server is running.',
-        submissionId: null,
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    // Submit directly through Formspree
+    await handleFormspreeSubmit(e);
   };
 
   const handleReset = () => {
-    setSubmissionState({ status: 'idle', message: '', submissionId: null });
+    resetFormspree();
+    setFormData({
+      name: '',
+      email: '',
+      subject: '',
+      message: '',
+    });
     setErrors({});
   };
 
@@ -137,147 +114,119 @@ export default function ContactForm() {
           Send a Direct Message
         </h3>
         <p style={{ color: 'var(--text-secondary)', fontSize: '0.92rem' }}>
-          Validated and securely stored directly into the database backend.
+          Delivered directly to Basim's inbox at <span style={{ color: '#ffffff', fontWeight: 600 }}>basimqamar8@gmail.com</span>.
         </p>
       </div>
 
       {/* Success Notification Alert */}
-      {submissionState.status === 'success' && (
+      {state.succeeded ? (
         <div
           role="alert"
           style={{
             backgroundColor: 'rgba(34, 197, 94, 0.08)',
             border: '1px solid rgba(34, 197, 94, 0.25)',
             borderRadius: '10px',
-            padding: '1.5rem',
-            marginBottom: '2rem',
+            padding: '1.75rem',
+            marginBottom: '1rem',
           }}
         >
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.85rem' }}>
-            <CheckCircle2 color="var(--status-active)" size={22} style={{ flexShrink: 0, marginTop: '2px' }} />
+            <CheckCircle2 color="var(--status-active)" size={24} style={{ flexShrink: 0, marginTop: '2px' }} />
             <div style={{ flex: 1 }}>
-              <h4 style={{ color: '#4ade80', fontWeight: 700, fontSize: '0.98rem', marginBottom: '0.25rem' }}>
-                Message Successfully Sent
+              <h4 style={{ color: '#4ade80', fontWeight: 700, fontSize: '1.05rem', marginBottom: '0.35rem' }}>
+                Message Successfully Delivered!
               </h4>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.88rem', marginBottom: '0.75rem' }}>
-                {submissionState.message}
+              <p style={{ color: 'var(--text-secondary)', fontSize: '0.9rem', lineHeight: 1.6, marginBottom: '1rem' }}>
+                Thank you! Your message was sent via Formspree and has arrived in Basim's Gmail inbox. You can expect a response shortly.
               </p>
-              {submissionState.submissionId && (
-                <span
-                  className="font-mono"
+              <div style={{ display: 'flex', gap: '0.75rem', flexWrap: 'wrap' }}>
+                <Button variant="secondary" size="sm" onClick={handleReset} icon={RefreshCw}>
+                  Send Another Message
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <form onSubmit={onSubmit} noValidate>
+          {/* Honeypot Spam Field for Formspree */}
+          <input
+            type="text"
+            name="_gotcha"
+            style={{ display: 'none' }}
+            tabIndex={-1}
+            autoComplete="off"
+          />
+
+          {/* Formspree Subject Meta */}
+          <input
+            type="hidden"
+            name="_subject"
+            value={formData.subject ? `Portfolio Message: ${formData.subject}` : 'New Portfolio Contact Submission'}
+          />
+
+          {/* Formspree Reply-To Meta */}
+          <input
+            type="hidden"
+            name="_replyto"
+            value={formData.email}
+          />
+
+          {/* Error Alert from Formspree if any */}
+          {state.errors && state.errors.getFormErrors().length > 0 && (
+            <div
+              role="alert"
+              style={{
+                backgroundColor: 'rgba(239, 68, 68, 0.08)',
+                border: '1px solid rgba(239, 68, 68, 0.25)',
+                borderRadius: '10px',
+                padding: '1.25rem',
+                marginBottom: '1.75rem',
+              }}
+            >
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.85rem' }}>
+                <AlertCircle color="var(--error)" size={20} style={{ flexShrink: 0, marginTop: '2px' }} />
+                <div>
+                  <h4 style={{ color: '#f87171', fontWeight: 700, fontSize: '0.92rem', marginBottom: '0.2rem' }}>
+                    Submission Notice
+                  </h4>
+                  <p style={{ color: 'var(--text-secondary)', fontSize: '0.86rem', lineHeight: 1.5 }}>
+                    Could not complete delivery. You can send this message directly to Basim via Gmail below:
+                  </p>
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem', paddingLeft: '2rem' }}>
+                <a
+                  href={`https://mail.google.com/mail/?view=cm&fs=1&to=basimqamar8@gmail.com&su=${encodeURIComponent(formData.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(`From: ${formData.name || 'Visitor'} (${formData.email || 'N/A'})\n\n${formData.message || ''}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
-                    display: 'inline-block',
-                    fontSize: '0.75rem',
-                    color: 'var(--text-muted)',
-                    backgroundColor: '#080808',
-                    padding: '0.2rem 0.55rem',
-                    borderRadius: '4px',
-                    border: '1px solid rgba(255, 255, 255, 0.06)',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '0.4rem',
+                    padding: '0.45rem 0.9rem',
+                    borderRadius: '6px',
+                    backgroundColor: '#ffffff',
+                    color: '#000000',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                    textDecoration: 'none',
                   }}
                 >
-                  Record ID: #{submissionState.submissionId}
-                </span>
-              )}
+                  <span>Send Directly via Gmail</span>
+                  <ExternalLink size={13} />
+                </a>
+              </div>
             </div>
-          </div>
-          <div style={{ marginTop: '1.25rem', display: 'flex', justifyContent: 'flex-end' }}>
-            <Button variant="secondary" size="sm" onClick={handleReset} icon={RefreshCw}>
-              Send Another Inquiry
-            </Button>
-          </div>
-        </div>
-      )}
+          )}
 
-      {/* Error Alert with 1-Click Direct Email Fallback */}
-      {submissionState.status === 'error' && (
-        <div
-          role="alert"
-          style={{
-            backgroundColor: 'rgba(239, 68, 68, 0.08)',
-            border: '1px solid rgba(239, 68, 68, 0.25)',
-            borderRadius: '10px',
-            padding: '1.25rem',
-            marginBottom: '1.75rem',
-          }}
-        >
-          <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem', marginBottom: '0.85rem' }}>
-            <AlertCircle color="var(--error)" size={20} style={{ flexShrink: 0, marginTop: '2px' }} />
-            <div>
-              <h4 style={{ color: '#f87171', fontWeight: 700, fontSize: '0.92rem', marginBottom: '0.2rem' }}>
-                Submission Notice
-              </h4>
-              <p style={{ color: 'var(--text-secondary)', fontSize: '0.86rem', lineHeight: 1.5 }}>
-                {submissionState.message}
-              </p>
-            </div>
-          </div>
-
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem', paddingLeft: '2rem' }}>
-            <a
-              href={`https://mail.google.com/mail/?view=cm&fs=1&to=basimqamar8@gmail.com&su=${encodeURIComponent(formData.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(`From: ${formData.full_name || 'Visitor'} (${formData.email || 'N/A'})\n\n${formData.message || ''}`)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                padding: '0.45rem 0.9rem',
-                borderRadius: '6px',
-                backgroundColor: '#ffffff',
-                color: '#000000',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                textDecoration: 'none',
-              }}
-            >
-              <span>Send Directly via Gmail</span>
-              <ExternalLink size={13} />
-            </a>
-
-            <a
-              href={`mailto:basimqamar8@gmail.com?subject=${encodeURIComponent(formData.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(`From: ${formData.full_name || 'Visitor'} (${formData.email || 'N/A'})\n\n${formData.message || ''}`)}`}
-              style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: '0.4rem',
-                padding: '0.45rem 0.9rem',
-                borderRadius: '6px',
-                backgroundColor: '#161616',
-                border: '1px solid rgba(255, 255, 255, 0.14)',
-                color: '#ffffff',
-                fontSize: '0.8rem',
-                fontWeight: 600,
-                textDecoration: 'none',
-              }}
-            >
-              <span>Default Mail App</span>
-            </a>
-          </div>
-        </div>
-      )}
-
-      {submissionState.status !== 'success' && (
-        <form onSubmit={handleSubmit} noValidate>
-          {/* Honeypot Spam Field */}
-          <div style={{ display: 'none' }} aria-hidden="true">
-            <label htmlFor="website">Leave blank</label>
-            <input
-              type="text"
-              id="website"
-              name="website"
-              tabIndex={-1}
-              autoComplete="off"
-              value={formData.website}
-              onChange={handleChange}
-            />
-          </div>
-
-          {/* Full Name & Email Fields Row */}
+          {/* Name & Email Fields Row */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1.25rem', marginBottom: '1.25rem' }}>
             {/* Full Name */}
             <div>
               <label
-                htmlFor="full_name"
+                htmlFor="name"
                 style={{
                   display: 'block',
                   fontSize: '0.86rem',
@@ -290,31 +239,32 @@ export default function ContactForm() {
               </label>
               <input
                 type="text"
-                id="full_name"
-                name="full_name"
-                value={formData.full_name}
+                id="name"
+                name="name"
+                value={formData.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 placeholder="e.g. Sarah Jenkins"
                 maxLength={100}
-                disabled={isSubmitting}
+                disabled={state.submitting}
                 style={{
                   width: '100%',
                   padding: '0.75rem 1rem',
                   borderRadius: '8px',
                   backgroundColor: '#080808',
-                  border: `1px solid ${errors.full_name ? 'var(--error)' : 'rgba(255, 255, 255, 0.1)'}`,
+                  border: `1px solid ${errors.name ? 'var(--error)' : 'rgba(255, 255, 255, 0.1)'}`,
                   color: '#ffffff',
                   fontFamily: 'var(--font-sans)',
                   fontSize: '0.92rem',
                   transition: 'border-color var(--transition-fast)',
                 }}
               />
-              {errors.full_name && (
+              {errors.name && (
                 <span style={{ display: 'block', color: 'var(--error)', fontSize: '0.78rem', marginTop: '0.35rem' }}>
-                  {errors.full_name}
+                  {errors.name}
                 </span>
               )}
+              <ValidationError prefix="Name" field="name" errors={state.errors} style={{ color: 'var(--error)', fontSize: '0.78rem', marginTop: '0.35rem' }} />
             </div>
 
             {/* Email Address */}
@@ -340,7 +290,7 @@ export default function ContactForm() {
                 onBlur={handleBlur}
                 placeholder="e.g. sarah@example.com"
                 maxLength={255}
-                disabled={isSubmitting}
+                disabled={state.submitting}
                 style={{
                   width: '100%',
                   padding: '0.75rem 1rem',
@@ -358,6 +308,7 @@ export default function ContactForm() {
                   {errors.email}
                 </span>
               )}
+              <ValidationError prefix="Email" field="email" errors={state.errors} style={{ color: 'var(--error)', fontSize: '0.78rem', marginTop: '0.35rem' }} />
             </div>
           </div>
 
@@ -384,7 +335,7 @@ export default function ContactForm() {
               onBlur={handleBlur}
               placeholder="e.g. AI Engineering Opportunity"
               maxLength={150}
-              disabled={isSubmitting}
+              disabled={state.submitting}
               style={{
                 width: '100%',
                 padding: '0.75rem 1rem',
@@ -402,6 +353,7 @@ export default function ContactForm() {
                 {errors.subject}
               </span>
             )}
+            <ValidationError prefix="Subject" field="subject" errors={state.errors} style={{ color: 'var(--error)', fontSize: '0.78rem', marginTop: '0.35rem' }} />
           </div>
 
           {/* Message Field */}
@@ -417,7 +369,7 @@ export default function ContactForm() {
               >
                 Message <span style={{ color: 'var(--text-muted)' }}>*</span>
               </label>
-              <span className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-dim)' }}>
+              <span className="font-mono" style={{ fontSize: '0.72rem', color: 'var(--text-muted)' }}>
                 {formData.message.length} / 5000
               </span>
             </div>
@@ -430,7 +382,7 @@ export default function ContactForm() {
               onBlur={handleBlur}
               placeholder="Write your inquiry or opportunity details here..."
               maxLength={5000}
-              disabled={isSubmitting}
+              disabled={state.submitting}
               style={{
                 width: '100%',
                 padding: '0.85rem 1rem',
@@ -450,24 +402,25 @@ export default function ContactForm() {
                 {errors.message}
               </span>
             )}
+            <ValidationError prefix="Message" field="message" errors={state.errors} style={{ color: 'var(--error)', fontSize: '0.78rem', marginTop: '0.35rem' }} />
           </div>
 
           {/* Form Actions */}
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem' }}>
-            <p className="font-mono" style={{ fontSize: '0.74rem', color: 'var(--text-dim)' }}>
-              Rate-limited &bull; Database persisted
+            <p className="font-mono" style={{ fontSize: '0.74rem', color: 'var(--text-muted)' }}>
+              Direct email delivery &bull; Formspree secure
             </p>
 
             <Button
               type="submit"
               variant="primary"
               size="md"
-              loading={isSubmitting}
-              disabled={isSubmitting}
+              loading={state.submitting}
+              disabled={state.submitting}
               icon={Send}
               iconPosition="right"
             >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
+              {state.submitting ? 'Delivering...' : 'Send Message'}
             </Button>
           </div>
         </form>
