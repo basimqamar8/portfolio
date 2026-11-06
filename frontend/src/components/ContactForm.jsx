@@ -123,7 +123,7 @@ export default function ContactForm() {
 
   return (
     <div
-      className="contact-form-container"
+      className="contact-form-container card-3d-depth"
       style={{
         backgroundColor: '#0c0c0c',
         border: '1px solid rgba(255, 255, 255, 0.08)',

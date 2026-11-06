@@ -16,10 +16,14 @@
   gap: 1.25rem;
 }
 
+.contact-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
 .contact-card:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.25);
+  transform: perspective(1000px) translateY(-3px) translateZ(6px);
+  box-shadow: 0 16px 36px -10px rgba(0, 0, 0, 0.85);
 }
 
 .contact-card:hover .contact-card-icon {

@@ -57,7 +57,7 @@ export default function ProjectCard({
 
   return (
     <div
-      className="project-card"
+      className="project-card card-3d-depth"
       style={{
         backgroundColor: '#0c0c0c',
         border: '1px solid rgba(255, 255, 255, 0.09)',
@@ -203,7 +203,7 @@ export default function ProjectCard({
                   alignItems: 'center',
                   gap: '0.4rem',
                   padding: '0.2rem 0.6rem',
-                  borderRadius: 'var(--radius-full)',
+                  borderRadius: '6px',
                   backgroundColor: 'rgba(255, 255, 255, 0.04)',
                   border: '1px solid rgba(255, 255, 255, 0.12)',
                   fontSize: '0.72rem',

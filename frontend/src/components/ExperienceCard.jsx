@@ -14,7 +14,7 @@ export default function ExperienceCard() {
   return (
     <>
       <div
-        className="experience-card"
+        className="experience-card card-3d-depth"
         style={{
           backgroundColor: '#0c0c0c',
           border: '1px solid rgba(255, 255, 255, 0.09)',
@@ -40,7 +40,7 @@ export default function ExperienceCard() {
                   color: '#e5c07b',
                   backgroundColor: 'rgba(229, 192, 123, 0.08)',
                   padding: '0.2rem 0.65rem',
-                  borderRadius: 'var(--radius-full)',
+                  borderRadius: '6px',
                   border: '1px solid rgba(229, 192, 123, 0.2)',
                 }}
               >
@@ -143,7 +143,7 @@ export default function ExperienceCard() {
                     alignItems: 'center',
                     gap: '0.4rem',
                     padding: '0.35rem 0.8rem',
-                    borderRadius: 'var(--radius-full)',
+                    borderRadius: '6px',
                     backgroundColor: '#161616',
                     border: '1px solid rgba(255, 255, 255, 0.16)',
                     color: '#ffffff',

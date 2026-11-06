@@ -83,7 +83,7 @@ export default function CertificateModal({ isOpen, onClose }) {
                 color: '#e5c07b',
                 backgroundColor: 'rgba(229, 192, 123, 0.08)',
                 padding: '0.2rem 0.65rem',
-                borderRadius: 'var(--radius-full)',
+                borderRadius: '6px',
                 border: '1px solid rgba(229, 192, 123, 0.25)',
               }}
             >

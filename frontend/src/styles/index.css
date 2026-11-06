@@ -299,14 +299,14 @@ code, .font-mono {
 }
 
 /* ==========================================================================
-   Badges & Tags — Monochromatic & Understated
+   Badges & Tags — Rectangular with Subtly Rounded Corners
    ========================================================================== */
 .badge {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  padding: 0.25rem 0.65rem;
-  border-radius: var(--radius-full);
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px; /* Rectangular with slightly rounded corners */
   font-size: 0.76rem;
   font-weight: 500;
   letter-spacing: 0.02em;
@@ -319,18 +319,54 @@ code, .font-mono {
   background: rgba(255, 255, 255, 0.03);
   border-color: rgba(255, 255, 255, 0.1);
   color: #e4e4e7;
+  border-radius: 6px;
 }
 
 .badge-gold {
   background: var(--award-gold-bg);
   border-color: rgba(212, 175, 55, 0.25);
   color: #e5c07b;
+  border-radius: 6px;
 }
 
 .badge-green {
   background: var(--status-active-bg);
   border-color: rgba(34, 197, 94, 0.25);
   color: #4ade80;
+  border-radius: 6px;
+}
+
+/* ==========================================================================
+   Page Transitions & 3D Spatial Effects
+   Fast, relaxing, and professional depth animation
+   ========================================================================== */
+.page-transition-container {
+  animation: pageTransition3D 340ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
+  transform-origin: center 20%;
+}
+
+@keyframes pageTransition3D {
+  0% {
+    opacity: 0;
+    transform: perspective(1000px) translateY(14px) scale(0.99) translateZ(-6px);
+  }
+  100% {
+    opacity: 1;
+    transform: perspective(1000px) translateY(0) scale(1) translateZ(0);
+  }
+}
+
+/* 3D Depth Card Lift Effect */
+.card-3d-depth {
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+  transform-style: preserve-3d;
+}
+
+.card-3d-depth:hover {
+  transform: perspective(1000px) translateY(-4px) translateZ(6px);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.9);
+  border-color: rgba(255, 255, 255, 0.2);
 }
 
 /* Micro-interaction transitions */

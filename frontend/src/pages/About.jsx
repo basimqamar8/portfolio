@@ -106,7 +106,7 @@ export default function About() {
                   onError={(e) => {
                     e.target.style.display = 'none';
                     e.target.parentElement.innerHTML = `
-                      <div style="width: 100%; height: 100%; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: #121212; color: #ffffff; font-size: 2.2rem; font-weight: 700; font-family: monospace;">
+                      <div style="width: 100%; height: 100%; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: #121212; color: #ffffff; font-size: 2.2rem; font-weight: 700; font-family: monospace;">
                         BQ
                       </div>
                     `;

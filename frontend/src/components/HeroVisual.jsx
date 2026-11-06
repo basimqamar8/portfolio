@@ -1,15 +1,54 @@
-import React from 'react';
+import React, { useRef, useState } from 'react';
 import { MapPin } from 'lucide-react';
 
 /**
  * HeroVisual Component
  * Minimalist, elegant portrait presentation of Basim Qamar.
- * Features an architectural dark-matte frame with hairline border and refined metadata.
+ * Features an architectural dark-matte frame with interactive 3D spatial tilt.
  */
 export default function HeroVisual() {
+  const cardRef = useRef(null);
+  const [tiltStyle, setTiltStyle] = useState({});
+
+  const handleMouseMove = (e) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const normX = (x - centerX) / centerX;
+    const normY = (y - centerY) / centerY;
+
+    // Elegant subtle 3D tilt: max 6 degrees
+    const rotX = -normY * 6;
+    const rotY = normX * 6;
+
+    setTiltStyle({
+      transform: `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.015, 1.015, 1.015)`,
+      transition: 'transform 0.08s ease-out',
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setTiltStyle({
+      transform: 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
+      transition: 'transform 0.5s cubic-bezier(0.16, 1, 0.3, 1)',
+    });
+  };
+
   return (
-    <div className="hero-portrait-container">
-      <div className="hero-portrait-card">
+    <div
+      className="hero-portrait-container"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        ref={cardRef}
+        className="hero-portrait-card card-3d-depth"
+        style={tiltStyle}
+      >
         {/* Top Minimal Header */}
         <div className="hero-portrait-header">
           <div className="header-identity">

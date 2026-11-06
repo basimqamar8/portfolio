@@ -1,0 +1,69 @@
+/* ==========================================================================
+   Background 3D Geometry Scene — Minimal Black & Atmospheric Depth
+   ========================================================================== */
+
+.bg-3d-viewport {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background-color: #000000;
+}
+
+.bg-3d-layer {
+  position: absolute;
+  top: -6%;
+  left: -6%;
+  width: 112%;
+  height: 112%;
+  background-image: url('/images/bg-3d-geometry.png');
+  background-size: cover;
+  background-position: center 35%;
+  background-repeat: no-repeat;
+  opacity: 0.24; /* Calibrated to be visible and distinct without distracting from text */
+  filter: contrast(1.2) brightness(0.9);
+  will-change: transform;
+  transform-origin: center center;
+  transition: transform 0.08s ease-out;
+}
+
+.bg-3d-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 25%,
+    rgba(0, 0, 0, 0.45) 0%,
+    rgba(0, 0, 0, 0.78) 60%,
+    #000000 100%
+  );
+  pointer-events: none;
+}
+
+.bg-3d-gradient-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 35vh;
+  background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.8) 70%, #000000 100%);
+  pointer-events: none;
+}
+
+/* Ensure foreground content stacks gracefully above the 3D background */
+.main-content,
+.navbar-wrapper,
+.footer-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+/* Reduced Motion compatibility */
+@media (prefers-reduced-motion: reduce) {
+  .bg-3d-layer {
+    transform: none !important;
+    transition: none !important;
+  }
+}
